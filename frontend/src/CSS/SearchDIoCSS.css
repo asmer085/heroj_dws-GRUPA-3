@@ -1,0 +1,10 @@
+header h1{
+    color: white;
+}
+
+input {
+    max-width: 450px;
+    width: 100%;
+    border-radius: 5px;
+
+}
