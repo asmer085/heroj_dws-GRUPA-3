@@ -12,7 +12,7 @@ import druga from '../Slike/druga.jpg';
 import test from '../Slike/test.jpg';
 
 
-function MediaCard({slika, tekst}) {
+function MojaKartica({slika, tekst}) {
   return (
     <Card sx = {{ borderRadius: '16px' }} style = {{backgroundColor: "black"}}>
 
@@ -29,7 +29,7 @@ function MediaCard({slika, tekst}) {
       </CardContent>
 
       <CardActions>
-        <Button size = "small" variant = "outlined" color = "secondary" align = "center">Learn More</Button>
+        <Button size = "small" variant = "outlined" color = "secondary">Learn More</Button>
       </CardActions>
 
     </Card>
@@ -38,7 +38,7 @@ function MediaCard({slika, tekst}) {
 
 function MojGrid() {
     return (
-    <div align = "center"> 
+    <div> 
 
         <Typography align = "center" color = "text.primary" variant="h4">
             Prva pomoć je najbitnija oblast!
@@ -47,18 +47,18 @@ function MojGrid() {
        
         <br/>
         <Box align = "center" sx={{ width: '100%' }} >
-        <Grid container spacing = {5} direction = "flex-direction">
+        <Grid container spacing = {5} direction="row" alignItems="center" justifyContent="center" >
 
           <Grid>
-            <MediaCard slika = {druga} tekst = "Učenje za ispit" />
+            <MojaKartica slika = {druga} tekst = "Učenje za ispit" />
           </Grid>
 
           <Grid>
-            <MediaCard slika = {prva} tekst = "Praktični primjeri" />
+            <MojaKartica slika = {prva} tekst = "Praktični primjeri" />
           </Grid>
 
           <Grid>
-            <MediaCard slika = {test} tekst = "Simulacija ispita" />
+            <MojaKartica slika = {test} tekst = "Simulacija ispita" />
           </Grid>
 
         </Grid>
