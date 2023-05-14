@@ -41,7 +41,7 @@ function MojGrid() {
     <div> 
 
         <Typography align = "center" color = "text.primary" variant="h4">
-            Prva pomoć je najbitnija oblast!
+            Prvu pomoć treba znati svako!
         </Typography>
         <br/>
        
