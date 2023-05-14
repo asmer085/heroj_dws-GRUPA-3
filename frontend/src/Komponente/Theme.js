@@ -1,5 +1,5 @@
-import { createTheme, responsiveFontSizes } from "@mui/material/styles";
-
+import { createTheme } from "@mui/material/styles";
+import city from "../Slike/map.jpg"
 import red from "@mui/material/colors/red";
 import grey from "@mui/material/colors/grey";
 
@@ -21,8 +21,8 @@ const theme = (mode) =>
         secondary: grey[900]
       },
       background: {
-        default: grey[900],
-        paper: grey[200]
+        default: grey[900]
+        
       },
       common: {
         black: grey[900],
