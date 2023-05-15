@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
-from .models import Probna
+from .models import Probna, Korisnik, PredavanjeVideo, PredavanjeDokumentacija, Pitanja, Simptom, Bolest
 # testovi za probnu bazu
 
 
@@ -16,7 +16,7 @@ class ProbnaTests(TestCase):
             author=testuser1, title='Blog title', body='Body content...')
         test_post.save()
 
-    def test_blog_content(self):
+    def test_content(self):
         post = Probna.objects.get(id=1)
         author = f'{post.author}'
         title = f'{post.title}'
@@ -24,3 +24,71 @@ class ProbnaTests(TestCase):
         self.assertEqual(author, 'testuser1')
         self.assertEqual(title, 'Blog title')
         self.assertEqual(body, 'Body content...')
+
+
+class KorisnikTests(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        test_post = Korisnik.objects.create(
+            ime='ime', prezime='prezime', mail='mail')
+        test_post.save()
+
+    def test_content(self):
+        post = Korisnik.objects.get(id=1)
+        ime = f'{post.ime}'
+        prezime = f'{post.prezime}'
+        mail = f'{post.mail}'
+        self.assertEqual(ime, 'ime')
+        self.assertEqual(prezime, 'prezime')
+        self.assertEqual(mail, 'mail')
+
+
+class PredavanjeVideoTests(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        test_post = PredavanjeVideo.objects.create(
+            naslov='ime', opis='prezime', link_videa='https://www.geeksforgeeks.org/')
+        test_post.save()
+
+    def test_content(self):
+        post = PredavanjeVideo.objects.get(id=1)
+        naslov = f'{post.naslov}'
+        opis = f'{post.opis}'
+        link_videa = f'{post.link_videa}'
+        self.assertEqual(naslov, 'ime')
+        self.assertEqual(opis, 'prezime')
+        self.assertEqual(link_videa, 'https://www.geeksforgeeks.org/')
+
+
+class PredavanjeDokumentacijaTests(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        test_post = PredavanjeDokumentacija.objects.create(
+            naziv='prezime', opis='mail', dokumentacija='dokumentacija')
+        test_post.save()
+
+    def test_content(self):
+        post = PredavanjeDokumentacija.objects.get(id=1)
+        naziv = f'{post.naziv}'
+        opis = f'{post.opis}'
+        dokumentacija = f'{post.dokumentacija}'
+        self.assertEqual(naziv, 'prezime')
+        self.assertEqual(opis, 'mail')
+        self.assertEqual(dokumentacija, 'dokumentacija')
+
+
+class PitanjaTests(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        test_post = Pitanja.objects.create(
+            postavka='ime', tacan_odgovor='prezime', tezina=5)
+        test_post.save()
+
+    def test_content(self):
+        post = Pitanja.objects.get(id=1)
+        postavka = f'{post.postavka}'
+        tacan_odgovor = f'{post.tacan_odgovor}'
+        tezina = post.tezina
+        self.assertEqual(postavka, 'ime')
+        self.assertEqual(tacan_odgovor, 'prezime')
+        self.assertEqual(tezina, 5)
