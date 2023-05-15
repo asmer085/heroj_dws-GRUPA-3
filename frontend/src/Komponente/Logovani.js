@@ -1,12 +1,12 @@
 import LogovaniNavbar from "./LogovaniNavbar";
-import MojaKartica from "./Kartice"
+import MojGrid from "./Kartice"
 
 function Logovani() {
     return (
         <>
         <LogovaniNavbar/>
         <br/>
-        <MojaKartica/>
+        <MojGrid/>
         </>
     )
 }
