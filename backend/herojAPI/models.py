@@ -1,17 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import User
-# napravio sam probnu tabelu cisto da bi sve radilo kako treba, kasnije ubacujemo nasu bazu u ovom fajlu
-
-
-class Probna(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=50)
-    body = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.title
 
 
 class Korisnik(models.Model):
@@ -53,18 +40,34 @@ class Pitanja(models.Model):
         return self.postavka
 
 
-class Simptom(models.Model):
-    bolesti = models.ForeignKey('Bolest', on_delete=models.CASCADE)
-    simptom = models.CharField(max_length=100)
+class Nesrece(models.Model):
+    korisnikid = models.ForeignKey(Korisnik, on_delete=models.CASCADE)
+    vrsta = models.CharField(max_length=30)
+    opis = models.TextField()
 
     def __str__(self):
-        return self.simptom
+        return self.vrsta
 
 
-class Bolest(models.Model):
-    ime_bolesti = models.CharField(max_length=100)
-    opis_nacina_reagovanja = models.TextField()
-    simptomi = models.ManyToManyField(Simptom)
+class PostupciPrvePomoci(models.Model):
+    nesreca = models.ForeignKey(Nesrece, on_delete=models.CASCADE)
+    opis = models.TextField()
 
     def __str__(self):
-        return self.ime_bolesti
+        return self.nesreca
+
+
+class RezultatiTestiranja(models.Model):
+    korisnikid = models.ForeignKey(Korisnik, on_delete=models.CASCADE)
+    rezultat = models.BooleanField()
+
+    def __str__(self):
+        return self.rezultat
+
+
+class HistorijaNesreca(models.Model):
+    korisnikid = models.ForeignKey(Korisnik, on_delete=models.CASCADE)
+    nesreca = models.ForeignKey(Nesrece, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.korisnikid

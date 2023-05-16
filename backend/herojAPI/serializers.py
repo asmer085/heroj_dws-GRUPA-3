@@ -1,11 +1,5 @@
 from rest_framework import serializers
-from .models import Probna, Korisnik, PredavanjeVideo, PredavanjeDokumentacija, Pitanja, Simptom, Bolest
-
-
-class ProbnaSerializer(serializers.ModelSerializer):
-    class Meta:
-        fields = ('id', 'author', 'title', 'body', 'created_at',)
-        model = Probna
+from .models import Korisnik, PredavanjeVideo, PredavanjeDokumentacija, Pitanja, Nesrece, PostupciPrvePomoci, RezultatiTestiranja, HistorijaNesreca
 
 
 class KorisnikSerializer(serializers.ModelSerializer):
@@ -32,13 +26,25 @@ class PitanjaSerializer(serializers.ModelSerializer):
         model = Pitanja
 
 
-class SimptomSerializer(serializers.ModelSerializer):
+class NesreceSerializer(serializers.ModelSerializer):
     class Meta:
-        fields = ('id', 'bolesti', 'simptom',)
-        model = Simptom
+        fields = ('id', 'korisnikid', 'vrsta', 'opis',)
+        model = Nesrece
 
 
-class BolestSerializer(serializers.ModelSerializer):
+class PostupciPrvePomociSerializer(serializers.ModelSerializer):
     class Meta:
-        fields = ('id', 'ime_bolesti', 'opis_nacina_reagovanja', 'simptomi',)
-        model = Bolest
+        fields = ('id', 'nesreca', 'opis',)
+        model = PostupciPrvePomoci
+
+
+class RezulttiTestiranjaSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = ('id', 'korisnikid', 'rezultat',)
+        model = RezultatiTestiranja
+
+
+class HistorijaNesrecaSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = ('id', 'korisnikid', 'nesreca',)
+        model = HistorijaNesreca

@@ -1,8 +1,6 @@
 from django.urls import path
-from .views import ProbnaList, ProbnaDetail, KorisnikList, KorisnikDetail, VideoList, VideoDetail, DokumentacijaList, DokumentacijaDetail, PitanjaList, PitanjaDetail, SimptomList, SimptomDetail, BolestList, BolestDetail
+from .views import KorisnikList, KorisnikDetail, VideoList, VideoDetail, DokumentacijaList, DokumentacijaDetail, PitanjaList, PitanjaDetail, NesreceList, NesreceDetail, PostupciPrvePomociList, PostupciPrvePomociDetail, RezultatiTestiranjaList, RezultatiTestiranjaDetail, HistorijaNesrecaList, HistorijaNesrecaDetail
 urlpatterns = [
-    path('probna/<int:pk>/', ProbnaDetail.as_view()),
-    path('probna/', ProbnaList.as_view()),
     path('korisnik/<int:pk>/', KorisnikDetail.as_view()),
     path('korisnik/', KorisnikList.as_view()),
     path('video/<int:pk>/', VideoDetail.as_view()),
@@ -11,8 +9,12 @@ urlpatterns = [
     path('dokumentacija/', DokumentacijaList.as_view()),
     path('pitanja/<int:pk>/', PitanjaDetail.as_view()),
     path('pitanja/', PitanjaList.as_view()),
-    path('simptom/<int:pk>/', SimptomDetail.as_view()),
-    path('simptom/', SimptomList.as_view()),
-    path('bolest/<int:pk>/', BolestDetail.as_view()),
-    path('bolest/', BolestList.as_view()),
+    path('nesrece/<int:pk>/', NesreceDetail.as_view()),
+    path('nesrece/', NesreceList.as_view()),
+    path('postupciprvepomoci/<int:pk>/', PostupciPrvePomociDetail.as_view()),
+    path('postupciprvepomoci/', PostupciPrvePomociList.as_view()),
+    path('rezultatitestiranja/<int:pk>/', RezultatiTestiranjaDetail.as_view()),
+    path('rezultatitestiranja/', RezultatiTestiranjaList.as_view()),
+    path('historijanesreca/<int:pk>/', HistorijaNesrecaDetail.as_view()),
+    path('historijanesreca/', HistorijaNesrecaList.as_view()),
 ]
