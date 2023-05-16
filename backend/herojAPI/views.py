@@ -1,16 +1,6 @@
 from rest_framework import generics
-from .models import Probna, Korisnik, PredavanjeVideo, PredavanjeDokumentacija, Pitanja, Simptom, Bolest
-from .serializers import ProbnaSerializer, KorisnikSerializer, PredavanjeVideoSerializer, PredavanjeDokumentacijaSerializer, PitanjaSerializer, SimptomSerializer, BolestSerializer
-
-
-class ProbnaList(generics.ListCreateAPIView):
-    queryset = Probna.objects.all()
-    serializer_class = ProbnaSerializer
-
-
-class ProbnaDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Probna.objects.all()
-    serializer_class = ProbnaSerializer
+from .models import Korisnik, PredavanjeVideo, PredavanjeDokumentacija, Pitanja
+from .serializers import KorisnikSerializer, PredavanjeVideoSerializer, PredavanjeDokumentacijaSerializer, PitanjaSerializer
 
 
 class KorisnikList(generics.ListCreateAPIView):
@@ -51,23 +41,3 @@ class PitanjaList(generics.ListCreateAPIView):
 class PitanjaDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Pitanja.objects.all()
     serializer_class = PitanjaSerializer
-
-
-class SimptomList(generics.ListCreateAPIView):
-    queryset = Simptom.objects.all()
-    serializer_class = SimptomSerializer
-
-
-class SimptomDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Simptom.objects.all()
-    serializer_class = SimptomSerializer
-
-
-class BolestList(generics.ListCreateAPIView):
-    queryset = Bolest.objects.all()
-    serializer_class = BolestSerializer
-
-
-class BolestDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Bolest.objects.all()
-    serializer_class = BolestSerializer
