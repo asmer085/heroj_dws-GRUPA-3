@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Korisnik, PredavanjeVideo, PredavanjeDokumentacija, Pitanja
+from .models import Korisnik, PredavanjeVideo, PredavanjeDokumentacija, Pitanja, Nesrece, PostupciPrvePomoci, RezultatiTestiranja, HistorijaNesreca
 
 
 class KorisnikSerializer(serializers.ModelSerializer):
@@ -24,3 +24,27 @@ class PitanjaSerializer(serializers.ModelSerializer):
     class Meta:
         fields = ('id', 'postavka', 'tacan_odgovor', 'tezina',)
         model = Pitanja
+
+
+class NesreceSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = ('id', 'korisnikid', 'vrsta', 'opis',)
+        model = Nesrece
+
+
+class PostupciPrvePomociSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = ('id', 'nesreca', 'opis',)
+        model = PostupciPrvePomoci
+
+
+class RezulttiTestiranjaSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = ('id', 'korisnikid', 'rezultat',)
+        model = RezultatiTestiranja
+
+
+class HistorijaNesrecaSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = ('id', 'korisnikid', 'nesreca',)
+        model = HistorijaNesreca

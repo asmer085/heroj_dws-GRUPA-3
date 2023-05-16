@@ -38,3 +38,36 @@ class Pitanja(models.Model):
 
     def __str__(self):
         return self.postavka
+
+
+class Nesrece(models.Model):
+    korisnikid = models.ForeignKey(Korisnik, on_delete=models.CASCADE)
+    vrsta = models.CharField(max_length=30)
+    opis = models.TextField()
+
+    def __str__(self):
+        return self.vrsta
+
+
+class PostupciPrvePomoci(models.Model):
+    nesreca = models.ForeignKey(Nesrece, on_delete=models.CASCADE)
+    opis = models.TextField()
+
+    def __str__(self):
+        return self.nesreca
+
+
+class RezultatiTestiranja(models.Model):
+    korisnikid = models.ForeignKey(Korisnik, on_delete=models.CASCADE)
+    rezultat = models.BooleanField()
+
+    def __str__(self):
+        return self.rezultat
+
+
+class HistorijaNesreca(models.Model):
+    korisnikid = models.ForeignKey(Korisnik, on_delete=models.CASCADE)
+    nesreca = models.ForeignKey(Nesrece, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.korisnikid
