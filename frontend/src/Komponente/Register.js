@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 import Navbar2 from './Navbar2';
 import { Box, Input, Typography,Button } from '@mui/material';
 import logo from '../Slike/logo.png'
-import PersonIcon from '@mui/icons-material/Person';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';

@@ -5,9 +5,6 @@ import logo from '../Slike/logo.png'
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import { spacing } from '@mui/system';
-import map from '../Slike/map.jpg'
 
 export function InputText(props){
     return(

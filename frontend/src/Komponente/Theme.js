@@ -1,5 +1,4 @@
 import { createTheme } from "@mui/material/styles";
-import city from "../Slike/map.jpg"
 import red from "@mui/material/colors/red";
 import grey from "@mui/material/colors/grey";
 

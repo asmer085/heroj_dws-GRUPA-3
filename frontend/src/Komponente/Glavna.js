@@ -3,7 +3,6 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import logo from "../Slike/logo.png";
 import Pretraga from "./Pretraga";
-import { spacing } from '@mui/system';
 
 
 function Glavna() {
