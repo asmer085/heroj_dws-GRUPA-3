@@ -1,16 +1,6 @@
 from rest_framework import generics
-from .models import Probna, Korisnik, PredavanjeVideo, PredavanjeDokumentacija, Pitanja, Simptom, Bolest
-from .serializers import ProbnaSerializer, KorisnikSerializer, PredavanjeVideoSerializer, PredavanjeDokumentacijaSerializer, PitanjaSerializer, SimptomSerializer, BolestSerializer
-
-
-class ProbnaList(generics.ListCreateAPIView):
-    queryset = Probna.objects.all()
-    serializer_class = ProbnaSerializer
-
-
-class ProbnaDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Probna.objects.all()
-    serializer_class = ProbnaSerializer
+from .models import Korisnik, PredavanjeVideo, PredavanjeDokumentacija, Pitanja, Nesrece, PostupciPrvePomoci, RezultatiTestiranja, HistorijaNesreca
+from .serializers import KorisnikSerializer, PredavanjeVideoSerializer, PredavanjeDokumentacijaSerializer, PitanjaSerializer, NesreceSerializer, PostupciPrvePomociSerializer, RezulttiTestiranjaSerializer, HistorijaNesrecaSerializer
 
 
 class KorisnikList(generics.ListCreateAPIView):
@@ -53,21 +43,41 @@ class PitanjaDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PitanjaSerializer
 
 
-class SimptomList(generics.ListCreateAPIView):
-    queryset = Simptom.objects.all()
-    serializer_class = SimptomSerializer
+class NesreceList(generics.ListCreateAPIView):
+    queryset = Nesrece.objects.all()
+    serializer_class = NesreceSerializer
 
 
-class SimptomDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Simptom.objects.all()
-    serializer_class = SimptomSerializer
+class NesreceDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Nesrece.objects.all()
+    serializer_class = NesreceSerializer
 
 
-class BolestList(generics.ListCreateAPIView):
-    queryset = Bolest.objects.all()
-    serializer_class = BolestSerializer
+class PostupciPrvePomociList(generics.ListCreateAPIView):
+    queryset = PostupciPrvePomoci.objects.all()
+    serializer_class = PostupciPrvePomociSerializer
 
 
-class BolestDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Bolest.objects.all()
-    serializer_class = BolestSerializer
+class PostupciPrvePomociDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = PostupciPrvePomoci.objects.all()
+    serializer_class = PostupciPrvePomociSerializer
+
+
+class RezultatiTestiranjaList(generics.ListCreateAPIView):
+    queryset = RezultatiTestiranja.objects.all()
+    serializer_class = RezulttiTestiranjaSerializer
+
+
+class RezultatiTestiranjaDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = RezultatiTestiranja.objects.all()
+    serializer_class = RezulttiTestiranjaSerializer
+
+
+class HistorijaNesrecaList(generics.ListCreateAPIView):
+    queryset = HistorijaNesreca.objects.all()
+    serializer_class = HistorijaNesrecaSerializer
+
+
+class HistorijaNesrecaDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = HistorijaNesreca.objects.all()
+    serializer_class = HistorijaNesrecaSerializer
