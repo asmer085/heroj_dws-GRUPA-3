@@ -27,7 +27,7 @@ function Login () {
     return(
         <>
         <Navbar2></Navbar2>
-        <Box style={{ width: '400px', height:'10px'}} sx = {{m: "auto"}}>
+        <Box style={{ width: '15%'}} sx = {{m: "auto"}}>
         <Box component="img" sx={{ height: 150}} src={logo}/>
         <Typography
             sx={{ mb: 3 }}
@@ -35,9 +35,11 @@ function Login () {
             className='title' 
             fontWeight={'bold'}>HerojApp
         </Typography>
+        <br/>
         <InputText type="text" text="Your username"/>
         <InputText type="password" text="Your password"/>
-        <Button variant="primary" sx={{mb:2, ml:4}}>Login </Button><br/>
+        <br/>
+        <Button variant = "contained" color = "secondary" sx={{mb:2, ml:4}}>Login </Button><br/>
         <FacebookRoundedIcon sx={{ml:5}}></FacebookRoundedIcon>
         <TwitterIcon></TwitterIcon>
         <LinkedInIcon></LinkedInIcon> 
