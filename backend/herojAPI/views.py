@@ -1,6 +1,19 @@
+from django.http import HttpResponse
 from rest_framework import generics
+from rest_framework.decorators import api_view
+
 from .models import Korisnik, PredavanjeVideo, PredavanjeDokumentacija, Pitanja, Nesrece, PostupciPrvePomoci, RezultatiTestiranja, HistorijaNesreca
 from .serializers import KorisnikSerializer, PredavanjeVideoSerializer, PredavanjeDokumentacijaSerializer, PitanjaSerializer, NesreceSerializer, PostupciPrvePomociSerializer, RezulttiTestiranjaSerializer, HistorijaNesrecaSerializer
+
+#6. Da bi sada mogli primati post, get put ili delete metode moramo u view-u
+#dodati anotacije za funkcije koje rade post, get, put ili delete.
+#Zbog toga je potrebno instalirati:
+# pip install djangorestframework
+#7. I onda u view dodati sljedeće:
+@api_view(['POST'])
+def test(request):
+    return HttpResponse("Test")
+
 
 
 class KorisnikList(generics.ListCreateAPIView):

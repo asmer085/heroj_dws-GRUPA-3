@@ -25,7 +25,11 @@ SECRET_KEY = 'jh!a#)&qv59a%+1h^ooy=qkv)uoh(t2r3pvdt6+#@xibl97p34'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+#dozvoljavamo sve hostove i origine
+ALLOWED_HOSTS = ['*']
+CORS_ORIGIN_ALLOW_ALL = True
+# JAKO JE BITNO DA NA KRAJU URL-A U
+#REACTU BUDE /. Inače neće raditi.
 
 
 # Application definition
@@ -41,6 +45,8 @@ INSTALLED_APPS = [
     'rest_framework',  # new
     # Local
     'herojAPI',
+    #komunikacija frontend backend
+    'corsheaders',
 ]
 
 # new
@@ -58,6 +64,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #komunikacija frontend backend
+    'corsheaders.middleware.CorsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'config.urls'
