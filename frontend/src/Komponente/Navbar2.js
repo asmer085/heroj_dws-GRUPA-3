@@ -15,8 +15,9 @@ function Navbar2() {
 
             <Box component="img"sx={{ height: 80}} alt="Logo" src={logo}/> 
             <Button color = "inherit" onClick = {() => navigate('/')}>Home</Button>
-            <Button color = "inherit" >Login</Button>
-            <Button color = "inherit" >Register</Button>
+            <Button color = "inherit" onClick = {() => navigate('/login')}>Login</Button>
+            <Button color = "inherit" onClick = {() => navigate('/register')}>Register</Button>
+            <Button color = "inherit" >About me</Button>
 
         </Toolbar>
       </AppBar>
