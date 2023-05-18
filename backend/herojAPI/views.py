@@ -2,8 +2,8 @@ from django.http import HttpResponse
 from rest_framework import generics
 from rest_framework.decorators import api_view
 
-from .models import Korisnik, PredavanjeVideo, PredavanjeDokumentacija, Pitanja, Nesrece, PostupciPrvePomoci, RezultatiTestiranja, HistorijaNesreca
-from .serializers import KorisnikSerializer, PredavanjeVideoSerializer, PredavanjeDokumentacijaSerializer, PitanjaSerializer, NesreceSerializer, PostupciPrvePomociSerializer, RezulttiTestiranjaSerializer, HistorijaNesrecaSerializer
+from .models import Simptomi, Nesrece_Simptomi, Korisnik, PredavanjeVideo, PredavanjeDokumentacija, Pitanja, Nesrece, PostupciPrvePomoci, RezultatiTestiranja, HistorijaNesreca
+from .serializers import SimptomiSerializer, Nesrece_SimptomiSerializer, KorisnikSerializer, PredavanjeVideoSerializer, PredavanjeDokumentacijaSerializer, PitanjaSerializer, NesreceSerializer, PostupciPrvePomociSerializer, RezulttiTestiranjaSerializer, HistorijaNesrecaSerializer
 
 #6. Da bi sada mogli primati post, get put ili delete metode moramo u view-u
 #dodati anotacije za funkcije koje rade post, get, put ili delete.
@@ -65,6 +65,23 @@ class NesreceDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Nesrece.objects.all()
     serializer_class = NesreceSerializer
 
+class SimptomiList(generics.ListCreateAPIView):
+    queryset = Simptomi.objects.all()
+    serializer_class = SimptomiSerializer
+
+
+class SimptomiDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Simptomi.objects.all()
+    serializer_class = SimptomiSerializer
+
+class Nesrece_SimptomiList(generics.ListCreateAPIView):
+    queryset = Nesrece_Simptomi.objects.all()
+    serializer_class = Nesrece_SimptomiSerializer
+
+
+class Nesrece_SimptomiDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Nesrece_Simptomi.objects.all()
+    serializer_class = Nesrece_SimptomiSerializer
 
 class PostupciPrvePomociList(generics.ListCreateAPIView):
     queryset = PostupciPrvePomoci.objects.all()
