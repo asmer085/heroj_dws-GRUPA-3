@@ -49,6 +49,10 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 # new
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [

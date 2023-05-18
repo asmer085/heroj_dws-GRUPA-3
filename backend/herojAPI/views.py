@@ -1,19 +1,66 @@
 from django.http import HttpResponse
 from rest_framework import generics
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+
+from rest_framework import status
+from rest_framework.response import Response
+from django.contrib.auth.models import User
+from rest_framework.authtoken.models import Token
+from django.contrib.auth import authenticate
+from rest_framework.permissions import IsAuthenticated
+
 
 from .models import Korisnik, PredavanjeVideo, PredavanjeDokumentacija, Pitanja, Nesrece, PostupciPrvePomoci, RezultatiTestiranja, HistorijaNesreca
-from .serializers import KorisnikSerializer, PredavanjeVideoSerializer, PredavanjeDokumentacijaSerializer, PitanjaSerializer, NesreceSerializer, PostupciPrvePomociSerializer, RezulttiTestiranjaSerializer, HistorijaNesrecaSerializer
+from .serializers import KorisnikSerializer, PredavanjeVideoSerializer, PredavanjeDokumentacijaSerializer, PitanjaSerializer, NesreceSerializer, PostupciPrvePomociSerializer, RezulttiTestiranjaSerializer, HistorijaNesrecaSerializer, UserSerializer
 
-#6. Da bi sada mogli primati post, get put ili delete metode moramo u view-u
-#dodati anotacije za funkcije koje rade post, get, put ili delete.
-#Zbog toga je potrebno instalirati:
+# 6. Da bi sada mogli primati post, get put ili delete metode moramo u view-u
+# dodati anotacije za funkcije koje rade post, get, put ili delete.
+# Zbog toga je potrebno instalirati:
 # pip install djangorestframework
-#7. I onda u view dodati sljedeće:
+# 7. I onda u view dodati sljedeće:
+
+# ovo je za react komponentu
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_user_info(request):
+    user = request.user  # Get the authenticated user
+    korisnik = User.objects.get(id=user.id)  # Retrieve the user from the korisnik table (assuming korisnik is the model for the table)
+    data = {
+        'name': korisnik.first_name,
+        'surname': korisnik.last_name,
+    }
+    return Response(data)
+
+
 @api_view(['POST'])
+# ovo sam dodao da mozemo pamtiti korisnike kada se registruju i loguju(user authentication#)
+def login(request):
+    username = request.data.get('username')
+    password = request.data.get('password')
+
+    user = authenticate(request, username=username, password=password)
+
+    if user is not None:
+        token, _ = Token.objects.get_or_create(user=user)
+        return Response({'token': token.key})
+    return Response({'message': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+
+
+def register(request):
+    serializer = UserSerializer(data=request.data)
+    if serializer.is_valid():
+        user = User.objects.create_user(
+            username=serializer.validated_data['username'],
+            password=serializer.validated_data['password']
+        )
+        return Response({'message': 'User registered successfully'}, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 def test(request):
     return HttpResponse("Test")
-
 
 
 class KorisnikList(generics.ListCreateAPIView):

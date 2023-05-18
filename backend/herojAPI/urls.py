@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import KorisnikList, KorisnikDetail, VideoList, VideoDetail, DokumentacijaList, DokumentacijaDetail, PitanjaList, PitanjaDetail, NesreceList, NesreceDetail, PostupciPrvePomociList, PostupciPrvePomociDetail, RezultatiTestiranjaList, RezultatiTestiranjaDetail, HistorijaNesrecaList, HistorijaNesrecaDetail
+from .views import KorisnikList, KorisnikDetail, VideoList, VideoDetail, DokumentacijaList, DokumentacijaDetail, PitanjaList, PitanjaDetail, NesreceList, NesreceDetail, PostupciPrvePomociList, PostupciPrvePomociDetail, RezultatiTestiranjaList, RezultatiTestiranjaDetail, HistorijaNesrecaList, HistorijaNesrecaDetail, login, register, get_user_info
 urlpatterns = [
     path('korisnik/<int:pk>/', KorisnikDetail.as_view()),
     path('korisnik/', KorisnikList.as_view()),
@@ -17,4 +17,8 @@ urlpatterns = [
     path('rezultatitestiranja/', RezultatiTestiranjaList.as_view()),
     path('historijanesreca/<int:pk>/', HistorijaNesrecaDetail.as_view()),
     path('historijanesreca/', HistorijaNesrecaList.as_view()),
+    # user_Auth
+    path('register/', register, name='register'),
+    path('login/', login, name='login'),
+    path('user/info/', get_user_info, name='user-info'),
 ]
