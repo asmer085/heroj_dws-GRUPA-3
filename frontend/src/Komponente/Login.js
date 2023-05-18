@@ -1,49 +1,129 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Navbar2 from './Navbar2';
 import { Box,Typography,Button,Input} from "@mui/material";
 import logo from '../Slike/logo.png'
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
-import { useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import axios from "axios";
 
-export function InputText(props){
-    return(
-        <>
-        <Input 
-        type={props.type}
-        placeholder={props.text}
-        size="lg"
-        sx={{mb: 2}}>
-        </Input>
-        <br></br>
-        </>
-    )
+const Login  = () => {
+    const [vals, setVals] = useState({
+        email: '',
+        pass: '',
+    })
+
+    const postavi = e => {
+        const {name, value} = e.target
+        setVals({
+            ...vals,
+            [name]: value
+        })
+    }
+
+    const [users, setUsers] = useState([])
+    const [ok, setOk] = useState(false)
+
+    //evo ovdje url mozda treba promijeniti. dodati ono nesto /v1 cini mi se... A mozda i ne npm. Ja mislim da da. Prso sam radim od 8 sad je 2
+    const URL = "http://127.0.0.1:8000/api";
+    useEffect(() => {
+        axios.get(URL + '/korisnik/').then((response) => {
+            setUsers(response.data)
+        })
+    },[])
+
+
+    function provjera() {
+        let brojac = 0;
+
+        let n = users.length
+        //broj kolona u tabeli, u mom slucaju trenutno korisnik1
+
+
+        for (let i = 0; i < n; i++) {
+            if (vals.email === users[i].email && vals.pass === users[i].passW) {
+                brojac++
+                console.log(users[i])
+                localStorage.setItem("Tip", "korisnik")
+                localStorage.setItem("Ime", users[i].ime)
+                localStorage.setItem("Prezime", users[i].prezime)
+                localStorage.setItem("Email", users[i].email)
+                //sve cuvaj u localStorage ako ikada bude trebalo ispisivati neke personalizovane poruke
+            }
+        }
+
+        return brojac > 0
+    }
+
+    const handleSubmit = e => {
+        e.preventDefault()
+
+        if (provjera()) {
+            setOk(true)
+        }else{
+        }
+    }
+
+
+    const [errors, setErrors] = useState({})
+
+    if (ok) {
+        //ako je prosla provjera na liniji 61
+//ne znam kako se ovo tacno linkuje, svakako treba urediti opet ovo izvinjavam se sto sam nesposoban hahahah
+        return (
+            <div className="form-container">
+                <h2>Uspjesno ste se prijavili</h2>
+                <button className="input-btn"><Link to='/logovani' className='nav-links'>Predji na stranicu</Link></button>
+            </div>
+        )
+    } else {
+
+        return (
+            <div>
+
+                <form className="form" onSubmit={handleSubmit}>
+                    <h2>Prijavi se</h2>
+                    <div className="inputs">
+                        <label className="label" htmlFor="email">
+                            Unesite email:
+                        </label>
+                        <input
+                            className="input"
+                            id="email"
+                            name="email"
+                            type="email"
+                            placeholder="Email..."
+                            value={vals.email}
+                            onChange={postavi}
+                        />
+                        {errors.email && <p>{errors.email}</p>}
+                    </div>
+                    <div className="inputs">
+                        <label className="label" htmlFor="pass">
+                            Unesite lozinku:
+                        </label>
+                        <input
+                            className="input"
+                            id="pass"
+                            name="pass"
+                            type="password"
+                            placeholder="Lozinka..."
+                            value={vals.pass}
+                            onChange={postavi}
+                        />
+                        {errors.pass && <p>{errors.pass}</p>}
+                    </div>
+                    <div>
+                        <button><Link to='/Register' className='nav-links'>Registrujte se ako niste</Link></button>
+                    </div>
+                    <button className="input-btn" type="submit">Prijavi se</button>
+                </form>
+
+            </div>
+        )
+
+    }
 }
 
-function Login () {
-    const navigate = useNavigate();
-    return(
-        <>
-        <Navbar2></Navbar2>
-        <Box style={{ width: '15%'}} sx = {{m: "auto"}}>
-        <Box component="img" sx={{ height: 150}} src={logo}/>
-        <Typography
-            sx={{ mb: 3 }}
-            variant='h4' 
-            className='title' 
-            fontWeight={'bold'}>HerojApp
-        </Typography>
-        <br/>
-        <InputText type="text" text="Your username"/>
-        <InputText type="password" text="Your password"/>
-        <br/>
-        <Button variant = "contained" color = "secondary" sx={{mb:2, ml:4}} onClick = {() => navigate('/logovani')}>Login </Button><br/>
-        <FacebookRoundedIcon sx={{ml:5}}></FacebookRoundedIcon>
-        <TwitterIcon></TwitterIcon>
-        <LinkedInIcon></LinkedInIcon> 
-       </Box>
-       </>
-    )
-}
-export default Login;
+export default Login
