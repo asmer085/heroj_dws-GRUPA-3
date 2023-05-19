@@ -75,10 +75,9 @@ const Login  = () => {
 //ne znam kako se ovo tacno linkuje, svakako treba urediti opet ovo izvinjavam se sto sam nesposoban hahahah
         return (
             <>
-            <Box>
+            <Box sx = {{m: "auto "}}>
                 <Typography variant = "h2"> Thank You for singing up! </Typography> 
-                <Typography variant = "paragraph"> Your account has been successfully created. </Typography> 
-                <Button variant = "outlined">Continue</Button>
+                <Button variant = "outlined" onClick = {() => navigate('/')}>Continue</Button>
             </Box>
             </>
         )
