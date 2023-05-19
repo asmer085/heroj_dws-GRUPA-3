@@ -1,6 +1,7 @@
-import {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
+import {useState} from "react";
 import axios from "axios";
+import { Box,Typography,Button,Input} from "@mui/material";
+import {useNavigate} from "react-router-dom";
 
 function provjeri(vals) {
     //doslovno provjerava ako nesto nije uneseno ispisuje ovu poruku
@@ -109,16 +110,20 @@ const  Register = () =>{
         })
     }
 
+    const navigate = useNavigate()
+
 
     if(isSub){
         //ako je prosla stranica
         //ne znam da li se ovako radi Link to, u liniji 117, svakako treba promijeniti jer nije MUI biblioteka jer je nisam ogao vcrs vala iskr jos i to
         return(
-            <div className="form-container">
-                <h2>Uspjesno ste se registrovali</h2>
-
-                <button className="input-btn"><Link to='/logovani' className = 'nav-links' >Predji na stranicu</Link></button>
-            </div>
+           <> 
+            <Box sx = {{m: "auto"}}>
+                <Typography variant = "h2">Thank You for singing up!</Typography> 
+                <Typography variant = "paragraph">Your account has been successfully created.</Typography> 
+                <Button variant = "outlined" onClick = {() => navigate('/')}>Continue</Button>
+            </Box>
+            </>
         )
     }else {
 

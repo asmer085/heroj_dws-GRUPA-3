@@ -68,14 +68,19 @@ const Login  = () => {
 
     const [errors, setErrors] = useState({})
 
+    const navigate = useNavigate()
+
     if (ok) {
         //ako je prosla provjera na liniji 61
 //ne znam kako se ovo tacno linkuje, svakako treba urediti opet ovo izvinjavam se sto sam nesposoban hahahah
         return (
-            <div className="form-container">
-                <h2>Uspjesno ste se prijavili</h2>
-                <button className="input-btn"><Link to='/logovani' className='nav-links'>Predji na stranicu</Link></button>
-            </div>
+            <>
+            <Box>
+                <Typography variant = "h2"> Thank You for singing up! </Typography> 
+                <Typography variant = "paragraph"> Your account has been successfully created. </Typography> 
+                <Button variant = "outlined">Continue</Button>
+            </Box>
+            </>
         )
     } else {
 
