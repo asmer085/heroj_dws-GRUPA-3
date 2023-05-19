@@ -4,6 +4,7 @@ from rest_framework.decorators import api_view
 
 from .models import Simptomi, Nesrece_Simptomi, Korisnik, PredavanjeVideo, PredavanjeDokumentacija, Pitanja, Nesrece, PostupciPrvePomoci, RezultatiTestiranja, HistorijaNesreca
 from .serializers import SimptomiSerializer, Nesrece_SimptomiSerializer, KorisnikSerializer, PredavanjeVideoSerializer, PredavanjeDokumentacijaSerializer, PitanjaSerializer, NesreceSerializer, PostupciPrvePomociSerializer, RezulttiTestiranjaSerializer, HistorijaNesrecaSerializer
+from . import models
 
 #6. Da bi sada mogli primati post, get put ili delete metode moramo u view-u
 #dodati anotacije za funkcije koje rade post, get, put ili delete.
@@ -16,10 +17,16 @@ def test(request):
 
 
 
-class KorisnikList(generics.ListCreateAPIView):
+class KorisnikListt(generics.ListCreateAPIView):#ASMERE IMAN OVDJE SAM STAVIO 2 T, SIGURNO IGRA ULOGU RADIO SAM SAMO DA PRODJE MOJA BAZA FINO
+    #AKO NADJETE RJESENJE ZA PROMJENU BAZE, A NACI CETE SIG REKAO JE ASMER VCRS DA ZNA, VODITE RACUNA O TOME!!!!!
     queryset = Korisnik.objects.all()
     serializer_class = KorisnikSerializer
 
+class KorisnikList(generics.ListCreateAPIView):#OVO JE KORISNIKLIST KOJI KORISTIM DALJE( I NA KOJI SAM SE U URL POZIVAO)
+    # ZA DODAVANJE I GLEDANJE IZ BAZE, VIDITE RACUNA!!!!!
+    #POGLEDATI I SERIALIZERE OBAVEZNO!!!!!
+    queryset = models.Korisnik1.objects.all()#KORISNIK1 MOJA BAZA NOVA NE ZNAM DODATI.
+    serializer_class = KorisnikSerializer#OSTAVIO OVAJ SERIALIZER JER SAM IZBRISAO KAKO GA JE ASMER NAPRAVIO
 
 class KorisnikDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Korisnik.objects.all()

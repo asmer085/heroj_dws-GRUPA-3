@@ -1,11 +1,12 @@
 from rest_framework import serializers
 from .models import Simptomi, Nesrece_Simptomi, Korisnik, PredavanjeVideo, PredavanjeDokumentacija, Pitanja, Nesrece, PostupciPrvePomoci, RezultatiTestiranja, HistorijaNesreca
+from . import models
 
-
-class KorisnikSerializer(serializers.ModelSerializer):
+class KorisnikSerializer(serializers.ModelSerializer):#IZBRISAO SAM SLUCAJNO VAS SERIALIZER, ILI ASMEROV NMP
+    #IMAJU OVIH 5 POLJA UMJESTO PROSLIH 3 ILI 4. TO CES LAHKO PRMIJENITI TEBI NEMA OVIH COMITOVA NA MASERU.
     class Meta:
-        fields = ('id', 'ime', 'prezime', 'mail',)
-        model = Korisnik
+        model = models.Korisnik1
+        fields = ['id','ime', 'prezime', 'email', 'passW']
 
 
 class PredavanjeVideoSerializer(serializers.ModelSerializer):
