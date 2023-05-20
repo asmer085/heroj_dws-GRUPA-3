@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Navbar2 from './Navbar2';
-import { Box,Typography,Button,Input} from "@mui/material";
+import { Box,Typography,Button,Input,FormGroup} from "@mui/material";
 import logo from '../Slike/logo.png'
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -58,7 +58,6 @@ const Login  = () => {
 
     const handleSubmit = e => {
         e.preventDefault()
-
         if (provjera()) {
             setOk(true)
         }else{
@@ -75,56 +74,56 @@ const Login  = () => {
 //ne znam kako se ovo tacno linkuje, svakako treba urediti opet ovo izvinjavam se sto sam nesposoban hahahah
         return (
             <>
-            <Box sx = {{m: "auto "}}>
-                <Typography variant = "h2"> Thank You for singing up! </Typography> 
-                <Button variant = "outlined" onClick = {() => navigate('/')}>Continue</Button>
+            <Box sx = {{m: "auto",width:"65%", marginTop:"8%"}}>
+            <Box component="img"
+                   sx={{ height: 150}} 
+                   src={logo}/>
+                <Typography variant = "h4"> Thank You for sigining up! </Typography> 
+                <Button variant = "contained" onClick = {() => navigate('/')} className="input-btn">Continue</Button>
             </Box>
             </>
         )
     } else {
-
         return (
-            <div>
-
-                <form className="form" onSubmit={handleSubmit}>
-                    <h2>Prijavi se</h2>
-                    <div className="inputs">
-                        <label className="label" htmlFor="email">
-                            Unesite email:
-                        </label>
-                        <input
+            <Box  className='form-container' style={{ width: '15%'}} sx = {{m: "auto"}}>
+                <Box component="img"
+                   sx={{ height: 150}} 
+                   src={logo}/>
+                <FormGroup className="form" onSubmit={handleSubmit}>
+                    <Typography variant="h4" sx={{m: "auto"}}>Log in</Typography><br></br>
+                    <Box className="inputs">
+                        <Input
                             className="input"
                             id="email"
                             name="email"
                             type="email"
-                            placeholder="Email..."
+                            placeholder="Enter email"
                             value={vals.email}
                             onChange={postavi}
                         />
                         {errors.email && <p>{errors.email}</p>}
-                    </div>
-                    <div className="inputs">
-                        <label className="label" htmlFor="pass">
-                            Unesite lozinku:
-                        </label>
-                        <input
+                    </Box>
+                    <Box className="inputs">
+                        <Input
                             className="input"
                             id="pass"
                             name="pass"
                             type="password"
-                            placeholder="Lozinka..."
+                            placeholder="Enter password"
                             value={vals.pass}
                             onChange={postavi}
                         />
                         {errors.pass && <p>{errors.pass}</p>}
-                    </div>
-                    <div>
-                        <button><Link to='/Register' className='nav-links'>Registrujte se ako niste</Link></button>
-                    </div>
-                    <button className="input-btn" type="submit">Prijavi se</button>
-                </form>
-
-            </div>
+                    </Box><br></br>
+                
+                        <Button variant="contained" className="input-btn" sx={{marginBottom:"5px"}}><Link to='/Register' 
+                        className='nav-links'
+                        style={{ textDecoration: 'none', color: "#F6F6F6" }}
+                        >Sign up</Link></Button>
+                    
+                    <Button variant="contained" className="input-btn" onClick={handleSubmit}>Sign in</Button>
+                </FormGroup>
+            </Box>
         )
 
     }
