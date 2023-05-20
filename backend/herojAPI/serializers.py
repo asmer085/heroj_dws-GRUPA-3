@@ -44,7 +44,7 @@ class Nesrece_SimptomiSerializer(serializers.ModelSerializer):
 
 class PostupciPrvePomociSerializer(serializers.ModelSerializer):
     class Meta:
-        fields = ('id', 'nesreca', 'simptomi', 'opis',)
+        fields = ('id', 'nesreca', 'opis',)
         model = PostupciPrvePomoci
 
 

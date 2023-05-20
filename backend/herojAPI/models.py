@@ -62,6 +62,9 @@ class Nesrece_Simptomi(models.Model):
     nesreca = models.ForeignKey(Nesrece, on_delete=models.CASCADE)
     simptom = models.ForeignKey(Simptomi, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.nesreca
+
     
 class PostupciPrvePomoci(models.Model):
     id = models.AutoField(primary_key=True)
@@ -69,7 +72,7 @@ class PostupciPrvePomoci(models.Model):
     opis = models.TextField()
 
     def __str__(self):
-        return self.nesreca
+        return self.opis
 
 
 class RezultatiTestiranja(models.Model):
