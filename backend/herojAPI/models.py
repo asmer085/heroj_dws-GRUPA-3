@@ -24,9 +24,7 @@ class PredavanjeVideo(models.Model):
 class PredavanjeDokumentacija(models.Model):
     id = models.AutoField(primary_key=True)
     naziv = models.CharField(max_length=255)
-    opis = models.TextField()
-    # treba skontati kako dokumentaciju, nije jednostavno... Softa
-    dokumentacija = models.TextField()
+    dokumentacija = models.FileField(upload_to=None, max_length=255)
 
     def __str__(self):
         return self.naziv

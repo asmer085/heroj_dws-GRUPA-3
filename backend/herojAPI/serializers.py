@@ -16,7 +16,7 @@ class PredavanjeVideoSerializer(serializers.ModelSerializer):
 
 class PredavanjeDokumentacijaSerializer(serializers.ModelSerializer):
     class Meta:
-        fields = ('id', 'naziv', 'opis', 'dokumentacija',)
+        fields = ('id', 'naziv', 'dokumentacija',)
         model = PredavanjeDokumentacija
 
 
