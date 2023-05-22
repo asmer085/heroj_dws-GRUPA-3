@@ -14,7 +14,6 @@ class Korisnik(models.Model):
 class PredavanjeVideo(models.Model):
     id = models.AutoField(primary_key=True)
     naslov = models.CharField(max_length=100)
-    opis = models.TextField()
     link_videa = models.URLField()
 
     def __str__(self):
