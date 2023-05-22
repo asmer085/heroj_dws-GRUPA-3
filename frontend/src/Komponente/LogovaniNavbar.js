@@ -15,7 +15,7 @@ function LogovaniNavbar() {
           <Toolbar>
             <Typography variant="paragraph" component="div" sx={{ flexGrow: 1 }}>
             <WavingHandIcon />
-               Pozdrav 
+               Hello
             </Typography>
             <Button color="inherit" onClick = {() => navigate('/')}>Home</Button>
           </Toolbar>

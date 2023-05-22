@@ -11,10 +11,10 @@ function Glavna() {
     <Navbar2/>
     <Box style={{ width: '400px', height: '10px' }} sx = {{m: "auto"}}>
         <br/>
-        <Typography variant = "h3">Mi smo Heroj App</Typography>
+        <Typography variant = "h3">We are Hero App</Typography>
         <br/>
-        <Typography variant = "paragraph">Naš cilj je pomoći ljudima da pravilno izvedu prvu pomoć uz detaljna uputstva,
-        kao i mogućnost pretraživanja simptoma.</Typography>
+        <Typography variant = "paragraph">Our goal is to educate people to save lives but also we give them an ability
+        to search the symptoms and get proper first aid steps!</Typography>
         <br/>
         <Box component="img"sx={{ height: 300}} alt="Logo" src={logo}/>
         <Pretraga/>

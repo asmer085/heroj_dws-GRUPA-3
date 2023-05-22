@@ -13,8 +13,7 @@ import test from '../Slike/test.jpg';
 import { useNavigate } from 'react-router-dom';
 
 
-function MojaKartica({slika, tekst}) {
-  const navigate = useNavigate();
+function MojaKartica({slika, tekst, f}) {
   return (
     <Card sx = {{ borderRadius: '16px' }} style = {{backgroundColor: "black"}}>
 
@@ -31,7 +30,7 @@ function MojaKartica({slika, tekst}) {
       </CardContent>
 
       <CardActions>
-        <Button size = "small" variant = "outlined" color = "secondary" onClick = {() => navigate("/fajlovi")}>Learn More</Button>
+        <Button size = "small" variant = "outlined" color = "secondary" onClick = {f}>Learn More</Button>
       </CardActions>
 
     </Card>
@@ -39,11 +38,12 @@ function MojaKartica({slika, tekst}) {
 }
 
 function MojGrid() {
+  const navigate = useNavigate();
     return (
     <div> 
 
         <Typography align = "center" color = "text.primary" variant="h4">
-            Prvu pomoć treba znati svako!
+            Be a hero, save lives!
         </Typography>
         <br/>
        
@@ -52,15 +52,15 @@ function MojGrid() {
         <Grid container spacing = {5} direction="row" alignItems="center" justifyContent="center" >
 
           <Grid>
-            <MojaKartica slika = {druga} tekst = "Učenje za ispit" />
+            <MojaKartica slika = {druga} tekst = "Learning material" f = {() => navigate("/fajlovi")}/>
           </Grid>
 
           <Grid>
-            <MojaKartica slika = {prva} tekst = "Praktični primjeri" />
+            <MojaKartica slika = {prva} tekst = "Video examples" f = {() => navigate("/fajlovi")} />
           </Grid>
 
           <Grid>
-            <MojaKartica slika = {test} tekst = "Simulacija ispita" />
+            <MojaKartica slika = {test} tekst = "Test your knowledge!" f = {() => navigate("/fajlovi")} />
           </Grid>
 
         </Grid>
