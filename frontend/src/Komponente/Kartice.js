@@ -10,9 +10,11 @@ import Box from '@mui/material/Box';
 import prva from '../Slike/prva.jpg';
 import druga from '../Slike/druga.jpg';
 import test from '../Slike/test.jpg';
+import { useNavigate } from 'react-router-dom';
 
 
 function MojaKartica({slika, tekst}) {
+  const navigate = useNavigate();
   return (
     <Card sx = {{ borderRadius: '16px' }} style = {{backgroundColor: "black"}}>
 
@@ -29,7 +31,7 @@ function MojaKartica({slika, tekst}) {
       </CardContent>
 
       <CardActions>
-        <Button size = "small" variant = "outlined" color = "secondary">Learn More</Button>
+        <Button size = "small" variant = "outlined" color = "secondary" onClick = {() => navigate("/fajlovi")}>Learn More</Button>
       </CardActions>
 
     </Card>
