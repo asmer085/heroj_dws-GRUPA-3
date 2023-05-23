@@ -3,13 +3,10 @@ import axios from "axios";
 import { Box,Typography,Button,Input, FormLabel, InputLabel, FormGroup, colors, responsiveFontSizes} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import logo from '../Slike/logo.png'
-import { red } from "@mui/material/node/colors";
-import Grid from '@mui/material/Grid';
-
+import Navbar2 from "./Navbar2"
 
 
 function provjeri(vals) {
-    //doslovno provjerava ako nesto nije uneseno ispisuje ovu poruku
     let errors = {}
 
     if (!vals.ime.trim()) {
@@ -39,8 +36,6 @@ function provjeri(vals) {
     return errors;
 }
 
-//mislim da ovo treba ici preko funkcija, kao da ste tako prije radili, nisam sig, ja sam vako uradio pa me kamenujte, samo mi je
-//bilo bitno logiku i backend zavrsiti pravo da vam kazem...
 const  Register = () =>{
     const [vals,setVals] = useState({
         ime: '',
@@ -51,7 +46,7 @@ const  Register = () =>{
     })
 
     function provjera(n){
-        //sve trivialno, ako je brojac veci od nule ima neki problem.
+
         let brojac = 0;
         if(!vals.ime.trim()){
             brojac++
@@ -89,8 +84,6 @@ const  Register = () =>{
         e.preventDefault()
         setErrors(provjeri(vals))
         if(provjera(vals)){
-            //ovo se desava ako je kliknut submit i ukoliko imamo unesene sve ove stvari, onda se radi axios.post na naznaceni url i ide u bazu, u mom
-            //slucaju to je baza korisnik1
             const formData = new FormData()
             formData.append("ime",vals.ime)
             formData.append("prezime",vals.prezime)
@@ -108,7 +101,7 @@ const  Register = () =>{
         }
        
     }
-    const postavi = e => {//intuitivno, postavlja vijednosti na imena vrijednosti haha
+    const postavi = e => {
         const {name,value} = e.target
         setVals({
             ...vals,
@@ -119,11 +112,10 @@ const  Register = () =>{
     const navigate = useNavigate()
 
     if(isSub){
-        //ako je prosla stranica
-        //ne znam da li se ovako radi Link to, u liniji 117, svakako treba promijeniti jer nije MUI biblioteka jer je nisam ogao vcrs vala iskr jos i to
         return(
            <> 
-            <Box sx = {{m: "auto", width:"65%", marginTop:"8%"}}>
+            <Navbar2/>
+            <Box sx = {{m: "auto"}}>
             <Box component="img"
                    sx={{ height: 150}} 
                    src={logo}/>
@@ -135,17 +127,15 @@ const  Register = () =>{
         )
     }else {
         return (
-            //tag za formu mora stajati, to je jedini nacin da se zna sta se veze za ono sto zelimo unositi u bazu.
-            //to je generalno pravilo , sve u formi, i dugme sa opcijom submit znaci svako polje koje ima se kupi. Njemu se pridruzuje
-            //name, koji se dalje siba u bazu itd i tako mu se pristupa. Ja uvijek sva ta imena drzim istim da se ne desi greska, al da znate
-            //mora biti forma, a ove klase i to sam povukao automatski od nekad prije, svakako treba mijenjati.
-            <Box className='form-container' style={{ width: '33%'}} sx = {{m: "auto"}}>
+            <>
+            <Navbar2/>
+            <Box className='form-container' style={{ width: '200px', height: '10px' }} sx = {{m: "auto"}}>
                 <Box component="img"
-                   sx={{ height: 150}} 
+                   sx={{ height: 150, m: "auto"}} 
                    src={logo}/>
                 <FormGroup>
                     <Typography variant="h4">Sign up</Typography><br/>
-                    <Box className="inputs"  sx={{ display: "flex", alignItems: "center" }}>
+                    <Box className="inputs" >
                         <Input
                             className="input"
                             id="ime"
@@ -218,11 +208,13 @@ const  Register = () =>{
                          variant="caption">{errors.pass2}</Typography>}
                     </Box>
                     <br/>
-                    <Button variant="contained"  onClick={handleSubmit} className="input-btn">Sign up</Button>
                 </FormGroup>
+                    <Box textAlign='center'>
+                    <Button variant="contained"  onClick={handleSubmit} className="input-btn">Sign up</Button>
+                    </Box>
+                
             </Box>
-            //evo ovdje ovaj button ima type submit, umjesto onclick, i kad se submita poziva se ona funkcija onsubmit
-            //koja je definisana u formi i kupi sve ovdje sto je navedeno.
+            </>
         )
     }
 }
