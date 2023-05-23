@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Korisnik(models.Model):
+class Korisnik(models.Model):#OVO JE MODEL TVOJ ILI VAS ASMERE I IMAN
     id = models.AutoField(primary_key=True)
     ime = models.CharField(max_length=50)
     prezime = models.CharField(max_length=50)
@@ -10,6 +10,13 @@ class Korisnik(models.Model):
     def __str__(self):
         return self.mail
 
+class Korisnik1(models.Model):#OVO JE MODEL KOJI JA KORISTIM, U BAZI TRENUTNO IMAM SAMO 1 USERA. SIFRU NE
+    #HASHIRAM, KO JE JEBE NEK STOJI PRAVA KO DA CE GLEDAT REALNO.
+    ime = models.CharField(max_length = 100)
+    prezime = models.CharField(max_length= 100)
+    email = models.CharField(max_length=100)
+    passW = models.CharField(max_length=500)
+    #Nisam definisao __str__ jer svakako treba spojiti promjene iz ovog nema smisla imati jos jednu bazu viska.
 
 class PredavanjeVideo(models.Model):
     id = models.AutoField(primary_key=True)
