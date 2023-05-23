@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import SimptomiList, Nesrece_SimptomiList, SimptomiDetail, Nesrece_SimptomiDetail, KorisnikList, KorisnikDetail, VideoList, VideoDetail, DokumentacijaList, DokumentacijaDetail, PitanjaList, PitanjaDetail, NesreceList, NesreceDetail, PostupciPrvePomociList, PostupciPrvePomociDetail, RezultatiTestiranjaList, RezultatiTestiranjaDetail, HistorijaNesrecaList, HistorijaNesrecaDetail
 urlpatterns = [
-    path('korisnik/', KorisnikList.as_view()),#ASMERE, OVAJ MORA ICI PRVI DA RADI FINO RUTIRANJE.
+    path('korisnik/', KorisnikList.as_view()),
     path('korisnik/<int:pk>/', KorisnikDetail.as_view()),
     path('video/<int:pk>/', VideoDetail.as_view()),
     path('video/', VideoList.as_view()),
