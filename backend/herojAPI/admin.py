@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Simptomi, Nesrece_Simptomi, Korisnik, PredavanjeVideo, PredavanjeDokumentacija, Pitanja, Nesrece, PostupciPrvePomoci, RezultatiTestiranja, HistorijaNesreca
+from .models import Simptomi, Nesrece_Simptomi, Korisnik1, PredavanjeVideo, PredavanjeDokumentacija, Pitanja, Nesrece, PostupciPrvePomoci, RezultatiTestiranja, HistorijaNesreca
 
-admin.site.register(Korisnik)
+admin.site.register(Korisnik1)
 admin.site.register(PredavanjeVideo)
 admin.site.register(PredavanjeDokumentacija)
 admin.site.register(Pitanja)

@@ -1,35 +1,40 @@
 from django.http import HttpResponse
 from rest_framework import generics
 from rest_framework.decorators import api_view
+from django.contrib.auth import get_user_model  # new
 
-from .models import Simptomi, Nesrece_Simptomi, Korisnik, PredavanjeVideo, PredavanjeDokumentacija, Pitanja, Nesrece, PostupciPrvePomoci, RezultatiTestiranja, HistorijaNesreca
-from .serializers import SimptomiSerializer, Nesrece_SimptomiSerializer, KorisnikSerializer, PredavanjeVideoSerializer, PredavanjeDokumentacijaSerializer, PitanjaSerializer, NesreceSerializer, PostupciPrvePomociSerializer, RezulttiTestiranjaSerializer, HistorijaNesrecaSerializer
-from . import models
+from .models import Simptomi, Nesrece_Simptomi, Korisnik1, PredavanjeVideo, PredavanjeDokumentacija, Pitanja, Nesrece, PostupciPrvePomoci, RezultatiTestiranja, HistorijaNesreca
+from .serializers import SimptomiSerializer, Nesrece_SimptomiSerializer, KorisnikSerializer, PredavanjeVideoSerializer, PredavanjeDokumentacijaSerializer, PitanjaSerializer, NesreceSerializer, PostupciPrvePomociSerializer, RezulttiTestiranjaSerializer, HistorijaNesrecaSerializer, UserSerializer
 
-#6. Da bi sada mogli primati post, get put ili delete metode moramo u view-u
-#dodati anotacije za funkcije koje rade post, get, put ili delete.
-#Zbog toga je potrebno instalirati:
+# 6. Da bi sada mogli primati post, get put ili delete metode moramo u view-u
+# dodati anotacije za funkcije koje rade post, get, put ili delete.
+# Zbog toga je potrebno instalirati:
 # pip install djangorestframework
-#7. I onda u view dodati sljedeće:
+# 7. I onda u view dodati sljedeće:
+
+
 @api_view(['POST'])
 def test(request):
     return HttpResponse("Test")
 
 
+class UserList(generics.ListCreateAPIView):  # new
+    queryset = get_user_model().objects.all()
+    serializer_class = UserSerializer
 
-class KorisnikListt(generics.ListCreateAPIView):#ASMERE IMAN OVDJE SAM STAVIO 2 T, SIGURNO IGRA ULOGU RADIO SAM SAMO DA PRODJE MOJA BAZA FINO
-    #AKO NADJETE RJESENJE ZA PROMJENU BAZE, A NACI CETE SIG REKAO JE ASMER VCRS DA ZNA, VODITE RACUNA O TOME!!!!!
-    queryset = Korisnik.objects.all()
+
+class UserDetail(generics.RetrieveUpdateDestroyAPIView):  # new
+    queryset = get_user_model().objects.all()
+    serializer_class = UserSerializer
+
+
+class KorisnikList(generics.ListCreateAPIView):  # Emire popravljeno sve
+    queryset = Korisnik1.objects.all()
     serializer_class = KorisnikSerializer
 
-class KorisnikList(generics.ListCreateAPIView):#OVO JE KORISNIKLIST KOJI KORISTIM DALJE( I NA KOJI SAM SE U URL POZIVAO)
-    # ZA DODAVANJE I GLEDANJE IZ BAZE, VIDITE RACUNA!!!!!
-    #POGLEDATI I SERIALIZERE OBAVEZNO!!!!!
-    queryset = models.Korisnik1.objects.all()#KORISNIK1 MOJA BAZA NOVA NE ZNAM DODATI.
-    serializer_class = KorisnikSerializer#OSTAVIO OVAJ SERIALIZER JER SAM IZBRISAO KAKO GA JE ASMER NAPRAVIO
 
 class KorisnikDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Korisnik.objects.all()
+    queryset = Korisnik1.objects.all()
     serializer_class = KorisnikSerializer
 
 
@@ -72,6 +77,7 @@ class NesreceDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Nesrece.objects.all()
     serializer_class = NesreceSerializer
 
+
 class SimptomiList(generics.ListCreateAPIView):
     queryset = Simptomi.objects.all()
     serializer_class = SimptomiSerializer
@@ -81,6 +87,7 @@ class SimptomiDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Simptomi.objects.all()
     serializer_class = SimptomiSerializer
 
+
 class Nesrece_SimptomiList(generics.ListCreateAPIView):
     queryset = Nesrece_Simptomi.objects.all()
     serializer_class = Nesrece_SimptomiSerializer
@@ -89,6 +96,7 @@ class Nesrece_SimptomiList(generics.ListCreateAPIView):
 class Nesrece_SimptomiDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Nesrece_Simptomi.objects.all()
     serializer_class = Nesrece_SimptomiSerializer
+
 
 class PostupciPrvePomociList(generics.ListCreateAPIView):
     queryset = PostupciPrvePomoci.objects.all()

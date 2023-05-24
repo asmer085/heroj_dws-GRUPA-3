@@ -1,22 +1,13 @@
 from django.db import models
 
 
-class Korisnik(models.Model):#OVO JE MODEL TVOJ ILI VAS ASMERE I IMAN
-    id = models.AutoField(primary_key=True)
-    ime = models.CharField(max_length=50)
-    prezime = models.CharField(max_length=50)
-    mail = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.mail
-
-class Korisnik1(models.Model):#OVO JE MODEL KOJI JA KORISTIM, U BAZI TRENUTNO IMAM SAMO 1 USERA. SIFRU NE
-    #HASHIRAM, KO JE JEBE NEK STOJI PRAVA KO DA CE GLEDAT REALNO.
-    ime = models.CharField(max_length = 100)
-    prezime = models.CharField(max_length= 100)
+class Korisnik1(models.Model):
+    ime = models.CharField(max_length=100)
+    prezime = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
     passW = models.CharField(max_length=500)
-    #Nisam definisao __str__ jer svakako treba spojiti promjene iz ovog nema smisla imati jos jednu bazu viska.
+    # Nisam definisao __str__ jer svakako treba spojiti promjene iz ovog nema smisla imati jos jednu bazu viska.
+
 
 class PredavanjeVideo(models.Model):
     id = models.AutoField(primary_key=True)
@@ -48,13 +39,15 @@ class Pitanja(models.Model):
     def __str__(self):
         return self.postavka
 
+
 class Simptomi(models.Model):
     id = models.AutoField(primary_key=True)
     vrsta = models.CharField(max_length=50)
     naziv = models.CharField(max_length=50)
-    
+
     def __str__(self):
         return self.naziv
+
 
 class Nesrece(models.Model):
     id = models.AutoField(primary_key=True)
@@ -63,13 +56,14 @@ class Nesrece(models.Model):
 
     def __str__(self):
         return self.vrsta
-    
+
+
 class Nesrece_Simptomi(models.Model):
     id = models.AutoField(primary_key=True)
     nesreca = models.ForeignKey(Nesrece, on_delete=models.CASCADE)
     simptom = models.ForeignKey(Simptomi, on_delete=models.CASCADE)
 
-    
+
 class PostupciPrvePomoci(models.Model):
     id = models.AutoField(primary_key=True)
     nesreca = models.ForeignKey(Nesrece, on_delete=models.CASCADE)
@@ -81,7 +75,7 @@ class PostupciPrvePomoci(models.Model):
 
 class RezultatiTestiranja(models.Model):
     id = models.AutoField(primary_key=True)
-    korisnikid = models.ForeignKey(Korisnik, on_delete=models.CASCADE)
+    korisnikid = models.ForeignKey(Korisnik1, on_delete=models.CASCADE)
     rezultat = models.BooleanField()
 
     def __str__(self):
@@ -90,7 +84,7 @@ class RezultatiTestiranja(models.Model):
 
 class HistorijaNesreca(models.Model):
     id = models.AutoField(primary_key=True)
-    korisnikid = models.ForeignKey(Korisnik, on_delete=models.CASCADE)
+    korisnikid = models.ForeignKey(Korisnik1, on_delete=models.CASCADE)
     nesreca = models.ForeignKey(Nesrece, on_delete=models.CASCADE)
 
     def __str__(self):
