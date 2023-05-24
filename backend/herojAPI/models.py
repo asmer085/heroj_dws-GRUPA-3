@@ -23,7 +23,7 @@ class PredavanjeVideo(models.Model):
 class PredavanjeDokumentacija(models.Model):
     id = models.AutoField(primary_key=True)
     naziv = models.CharField(max_length=255)
-    dokumentacija = models.FileField(upload_to=None, max_length=255)
+    dokumentacija = models.URLField(max_length=255)
 
     def __str__(self):
         return self.naziv
