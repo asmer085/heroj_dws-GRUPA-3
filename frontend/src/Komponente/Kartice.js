@@ -10,9 +10,11 @@ import Box from '@mui/material/Box';
 import prva from '../Slike/prva.jpg';
 import druga from '../Slike/druga.jpg';
 import test from '../Slike/test.jpg';
+import { useNavigate } from 'react-router-dom';
 
 
-function MojaKartica({slika, tekst}) {
+function MojaKartica({slika, tekst,url}) {
+  const navigate = useNavigate();
   return (
     <Card sx = {{ borderRadius: '16px' }} style = {{backgroundColor: "black"}}>
 
@@ -29,7 +31,7 @@ function MojaKartica({slika, tekst}) {
       </CardContent>
 
       <CardActions>
-        <Button size = "small" variant = "outlined" color = "secondary">Learn More</Button>
+        <Button size = "small" variant = "outlined" color = "secondary" onClick = {() => navigate("/"+url)}>Learn More</Button>
       </CardActions>
 
     </Card>
@@ -50,15 +52,15 @@ function MojGrid() {
         <Grid container spacing = {5} direction="row" alignItems="center" justifyContent="center" >
 
           <Grid>
-            <MojaKartica slika = {druga} tekst = "Učenje za ispit" />
+            <MojaKartica slika = {druga} tekst = "Učenje za ispit" url = "fajlovi/"/>
           </Grid>
 
           <Grid>
-            <MojaKartica slika = {prva} tekst = "Praktični primjeri" />
+            <MojaKartica slika = {prva} tekst = "Praktični primjeri" url="video/"/>
           </Grid>
 
           <Grid>
-            <MojaKartica slika = {test} tekst = "Simulacija ispita" />
+            <MojaKartica slika = {test} tekst = "Simulacija ispita" url="fajlovi/"/>
           </Grid>
 
         </Grid>

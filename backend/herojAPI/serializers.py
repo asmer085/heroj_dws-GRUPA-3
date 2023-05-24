@@ -19,13 +19,13 @@ class UserSerializer(serializers.ModelSerializer):  # new
 
 class PredavanjeVideoSerializer(serializers.ModelSerializer):
     class Meta:
-        fields = ('id', 'naslov', 'opis', 'link_videa',)
+        fields = ('id', 'naslov', 'link_videa',)
         model = PredavanjeVideo
 
 
 class PredavanjeDokumentacijaSerializer(serializers.ModelSerializer):
     class Meta:
-        fields = ('id', 'naziv', 'opis', 'dokumentacija',)
+        fields = ('id', 'naziv', 'dokumentacija',)
         model = PredavanjeDokumentacija
 
 
@@ -55,7 +55,7 @@ class Nesrece_SimptomiSerializer(serializers.ModelSerializer):
 
 class PostupciPrvePomociSerializer(serializers.ModelSerializer):
     class Meta:
-        fields = ('id', 'nesreca', 'simptomi', 'opis',)
+        fields = ('id', 'nesreca', 'opis',)
         model = PostupciPrvePomoci
 
 
