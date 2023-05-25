@@ -12,7 +12,6 @@ class Korisnik1(models.Model):
 class PredavanjeVideo(models.Model):
     id = models.AutoField(primary_key=True)
     naslov = models.CharField(max_length=100)
-    opis = models.TextField()
     link_videa = models.URLField()
 
     def __str__(self):
@@ -22,9 +21,7 @@ class PredavanjeVideo(models.Model):
 class PredavanjeDokumentacija(models.Model):
     id = models.AutoField(primary_key=True)
     naziv = models.CharField(max_length=255)
-    opis = models.TextField()
-    # treba skontati kako dokumentaciju, nije jednostavno... Softa
-    dokumentacija = models.TextField()
+    dokumentacija = models.URLField(max_length=255)
 
     def __str__(self):
         return self.naziv
@@ -63,14 +60,17 @@ class Nesrece_Simptomi(models.Model):
     nesreca = models.ForeignKey(Nesrece, on_delete=models.CASCADE)
     simptom = models.ForeignKey(Simptomi, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.nesreca
 
+    
 class PostupciPrvePomoci(models.Model):
     id = models.AutoField(primary_key=True)
     nesreca = models.ForeignKey(Nesrece, on_delete=models.CASCADE)
     opis = models.TextField()
 
     def __str__(self):
-        return self.nesreca
+        return self.opis
 
 
 class RezultatiTestiranja(models.Model):
