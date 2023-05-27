@@ -18,7 +18,6 @@ function Navbar2() {
             <Button color = "inherit" onClick = {() => navigate('/login')}>Login</Button>
             <Button color = "inherit" onClick = {() => navigate('/register')}>Register</Button>
             <Button color = "inherit" onClick = {() => navigate('/about')}>About me</Button>
-
         </Toolbar>
       </AppBar>
     </Box>

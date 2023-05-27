@@ -20,6 +20,7 @@ function App() {
         <Route path="/video" element={<Video />} />
       </Routes>
     </div>
+
   );
 }
 

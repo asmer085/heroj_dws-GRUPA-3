@@ -1,11 +1,12 @@
 from rest_framework import serializers
-from .models import Simptomi, Nesrece_Simptomi, Korisnik, PredavanjeVideo, PredavanjeDokumentacija, Pitanja, Nesrece, PostupciPrvePomoci, RezultatiTestiranja, HistorijaNesreca
+from .models import Simptomi, Nesrece_Simptomi, PredavanjeVideo, PredavanjeDokumentacija, Pitanja, Nesrece, PostupciPrvePomoci, RezultatiTestiranja, HistorijaNesreca
+from django.contrib.auth import get_user_model  # new
 
 
-class KorisnikSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):  # new
     class Meta:
-        fields = ('id', 'ime', 'prezime', 'mail',)
-        model = Korisnik
+        model = get_user_model()
+        fields = ('id', 'username',)
 
 
 class PredavanjeVideoSerializer(serializers.ModelSerializer):
@@ -31,10 +32,12 @@ class NesreceSerializer(serializers.ModelSerializer):
         fields = ('id', 'vrsta', 'opis',)
         model = Nesrece
 
+
 class SimptomiSerializer(serializers.ModelSerializer):
     class Meta:
         fields = ('id', 'vrsta', 'naziv',)
         model = Simptomi
+
 
 class Nesrece_SimptomiSerializer(serializers.ModelSerializer):
     class Meta:
