@@ -1,13 +1,5 @@
 from django.db import models
-
-
-class Korisnik1(models.Model):
-    ime = models.CharField(max_length=100)
-    prezime = models.CharField(max_length=100)
-    email = models.CharField(max_length=100)
-    passW = models.CharField(max_length=500)
-    # Nisam definisao __str__ jer svakako treba spojiti promjene iz ovog nema smisla imati jos jednu bazu viska.
-
+from django.contrib.auth.models import User
 
 class PredavanjeVideo(models.Model):
     id = models.AutoField(primary_key=True)
@@ -75,7 +67,7 @@ class PostupciPrvePomoci(models.Model):
 
 class RezultatiTestiranja(models.Model):
     id = models.AutoField(primary_key=True)
-    korisnikid = models.ForeignKey(Korisnik1, on_delete=models.CASCADE)
+    korisnikid = models.ForeignKey(User, on_delete=models.CASCADE)
     rezultat = models.BooleanField()
 
     def __str__(self):
@@ -84,7 +76,7 @@ class RezultatiTestiranja(models.Model):
 
 class HistorijaNesreca(models.Model):
     id = models.AutoField(primary_key=True)
-    korisnikid = models.ForeignKey(Korisnik1, on_delete=models.CASCADE)
+    korisnikid = models.ForeignKey(User, on_delete=models.CASCADE)
     nesreca = models.ForeignKey(Nesrece, on_delete=models.CASCADE)
 
     def __str__(self):

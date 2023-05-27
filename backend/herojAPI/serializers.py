@@ -1,14 +1,6 @@
 from rest_framework import serializers
-from .models import Simptomi, Nesrece_Simptomi, Korisnik1, PredavanjeVideo, PredavanjeDokumentacija, Pitanja, Nesrece, PostupciPrvePomoci, RezultatiTestiranja, HistorijaNesreca
+from .models import Simptomi, Nesrece_Simptomi, PredavanjeVideo, PredavanjeDokumentacija, Pitanja, Nesrece, PostupciPrvePomoci, RezultatiTestiranja, HistorijaNesreca
 from django.contrib.auth import get_user_model  # new
-
-
-# IZBRISAO SAM SLUCAJNO VAS SERIALIZER, ILI ASMEROV NMP
-class KorisnikSerializer(serializers.ModelSerializer):
-    # IMAJU OVIH 5 POLJA UMJESTO PROSLIH 3 ILI 4. TO CES LAHKO PRMIJENITI TEBI NEMA OVIH COMITOVA NA MASERU.
-    class Meta:
-        model = Korisnik1
-        fields = ['id', 'ime', 'prezime', 'email', 'passW']
 
 
 class UserSerializer(serializers.ModelSerializer):  # new

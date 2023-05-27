@@ -1,22 +1,5 @@
 from django.test import TestCase
-from .models import Korisnik, PredavanjeVideo, PredavanjeDokumentacija, Pitanja, Simptom, Bolest
-
-
-class KorisnikTests(TestCase):
-    @classmethod
-    def setUpTestData(cls):
-        test_post = Korisnik.objects.create(
-            ime='ime', prezime='prezime', mail='mail')
-        test_post.save()
-
-    def test_content(self):
-        post = Korisnik.objects.get(id=1)
-        ime = f'{post.ime}'
-        prezime = f'{post.prezime}'
-        mail = f'{post.mail}'
-        self.assertEqual(ime, 'ime')
-        self.assertEqual(prezime, 'prezime')
-        self.assertEqual(mail, 'mail')
+from .models import PredavanjeVideo, PredavanjeDokumentacija, Pitanja
 
 
 class PredavanjeVideoTests(TestCase):
