@@ -1,26 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class PredavanjeVideo(models.Model):
-    id = models.AutoField(primary_key=True)
-    naslov = models.CharField(max_length=100)
-    opis = models.TextField()
-    link_videa = models.URLField()
-
-    def __str__(self):
-        return self.naslov
-
-
-class PredavanjeDokumentacija(models.Model):
-    id = models.AutoField(primary_key=True)
-    naziv = models.CharField(max_length=255)
-    opis = models.TextField()
-    # treba skontati kako dokumentaciju, nije jednostavno... Softa
-    dokumentacija = models.TextField()
-
-    def __str__(self):
-        return self.naziv
-
 
 class Pitanja(models.Model):
     id = models.AutoField(primary_key=True)

@@ -1,10 +1,6 @@
 from django.urls import path
-from .views import SimptomiList, Nesrece_SimptomiList, SimptomiDetail, Nesrece_SimptomiDetail, VideoList, VideoDetail, DokumentacijaList, DokumentacijaDetail, PitanjaList, PitanjaDetail, NesreceList, NesreceDetail, PostupciPrvePomociList, PostupciPrvePomociDetail, RezultatiTestiranjaList, RezultatiTestiranjaDetail, HistorijaNesrecaList, HistorijaNesrecaDetail, UserList, UserDetail
+from .views import SimptomiList, Nesrece_SimptomiList, SimptomiDetail, Nesrece_SimptomiDetail, PitanjaList, PitanjaDetail, NesreceList, NesreceDetail, PostupciPrvePomociList, PostupciPrvePomociDetail, RezultatiTestiranjaList, RezultatiTestiranjaDetail, HistorijaNesrecaList, HistorijaNesrecaDetail, UserList, UserDetail
 urlpatterns = [
-    path('video/<int:pk>/', VideoDetail.as_view()),
-    path('video/', VideoList.as_view()),
-    path('dokumentacija/<int:pk>/', DokumentacijaDetail.as_view()),
-    path('dokumentacija/', DokumentacijaList.as_view()),
     path('pitanja/<int:pk>/', PitanjaDetail.as_view()),
     path('pitanja/', PitanjaList.as_view()),
     path('nesrece/<int:pk>/', NesreceDetail.as_view()),
