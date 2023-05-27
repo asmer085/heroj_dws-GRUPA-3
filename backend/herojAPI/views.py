@@ -1,9 +1,12 @@
 from django.http import HttpResponse
 from rest_framework import generics
 from rest_framework.decorators import api_view
+from django_filters import rest_framework as filters
 
 from .models import Simptomi, Nesrece_Simptomi, Korisnik, PredavanjeVideo, PredavanjeDokumentacija, Pitanja, Nesrece, PostupciPrvePomoci, RezultatiTestiranja, HistorijaNesreca
 from .serializers import SimptomiSerializer, Nesrece_SimptomiSerializer, KorisnikSerializer, PredavanjeVideoSerializer, PredavanjeDokumentacijaSerializer, PitanjaSerializer, NesreceSerializer, PostupciPrvePomociSerializer, RezulttiTestiranjaSerializer, HistorijaNesrecaSerializer
+# Ukljucujemo custom filtere koje dodajemo na view Nesreca i PostupciPrvePomoci
+from .filters import NesreceFilter, PostupciPrvePomociFilter
 
 #6. Da bi sada mogli primati post, get put ili delete metode moramo u view-u
 #dodati anotacije za funkcije koje rade post, get, put ili delete.
@@ -59,7 +62,8 @@ class PitanjaDetail(generics.RetrieveUpdateDestroyAPIView):
 class NesreceList(generics.ListCreateAPIView):
     queryset = Nesrece.objects.all()
     serializer_class = NesreceSerializer
-
+    filter_backends = (filters.DjangoFilterBackend,) # ukljucujemo filter opciju samo za ovaj view tj. nismo filtere ukljucili na globalnom nivou jer nam za sad ne trebaju na ostalim pozivima
+    filterset_class = NesreceFilter # dodajemo filter parametre
 
 class NesreceDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Nesrece.objects.all()
@@ -86,7 +90,8 @@ class Nesrece_SimptomiDetail(generics.RetrieveUpdateDestroyAPIView):
 class PostupciPrvePomociList(generics.ListCreateAPIView):
     queryset = PostupciPrvePomoci.objects.all()
     serializer_class = PostupciPrvePomociSerializer
-
+    filter_backends = (filters.DjangoFilterBackend,) # ukljucujemo filter opciju samo za ovaj view tj. nismo filtere ukljucili na globalnom nivou jer nam za sad ne trebaju na ostalim pozivima
+    filterset_class = PostupciPrvePomociFilter # dodajemo filter parametre
 
 class PostupciPrvePomociDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = PostupciPrvePomoci.objects.all()

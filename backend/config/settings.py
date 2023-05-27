@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 3rd-party apps
     'rest_framework',  # new
+    'django_filters',  # Novi modul za filter vrijednosti na REST API
     # Local
     'herojAPI',
     #komunikacija frontend backend
