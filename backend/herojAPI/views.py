@@ -3,8 +3,8 @@ from rest_framework import generics
 from rest_framework.decorators import api_view
 from django.contrib.auth import get_user_model  # new
 
-from .models import Simptomi, Nesrece_Simptomi, Pitanja, Nesrece, PostupciPrvePomoci, RezultatiTestiranja, HistorijaNesreca
-from .serializers import SimptomiSerializer, Nesrece_SimptomiSerializer, PitanjaSerializer, NesreceSerializer, PostupciPrvePomociSerializer, RezulttiTestiranjaSerializer, HistorijaNesrecaSerializer, UserSerializer
+from .models import Simptomi, Nesrece_Simptomi, Pitanja, Nesrece, PostupciPrvePomoci, RezultatiTestiranja
+from .serializers import SimptomiSerializer, Nesrece_SimptomiSerializer, PitanjaSerializer, NesreceSerializer, PostupciPrvePomociSerializer, RezulttiTestiranjaSerializer, UserSerializer
 
 # 6. Da bi sada mogli primati post, get put ili delete metode moramo u view-u
 # dodati anotacije za funkcije koje rade post, get, put ili delete.
@@ -86,13 +86,3 @@ class RezultatiTestiranjaList(generics.ListCreateAPIView):
 class RezultatiTestiranjaDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = RezultatiTestiranja.objects.all()
     serializer_class = RezulttiTestiranjaSerializer
-
-
-class HistorijaNesrecaList(generics.ListCreateAPIView):
-    queryset = HistorijaNesreca.objects.all()
-    serializer_class = HistorijaNesrecaSerializer
-
-
-class HistorijaNesrecaDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = HistorijaNesreca.objects.all()
-    serializer_class = HistorijaNesrecaSerializer

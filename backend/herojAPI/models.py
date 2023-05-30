@@ -30,12 +30,6 @@ class Nesrece(models.Model):
         return self.vrsta
 
 
-class Nesrece_Simptomi(models.Model):
-    id = models.AutoField(primary_key=True)
-    nesreca = models.ForeignKey(Nesrece, on_delete=models.CASCADE)
-    simptom = models.ForeignKey(Simptomi, on_delete=models.CASCADE)
-
-
 class PostupciPrvePomoci(models.Model):
     id = models.AutoField(primary_key=True)
     nesreca = models.ForeignKey(Nesrece, on_delete=models.CASCADE)
@@ -45,6 +39,14 @@ class PostupciPrvePomoci(models.Model):
         return self.nesreca
 
 
+class Nesrece_Simptomi(models.Model):
+    id = models.AutoField(primary_key=True)
+    nesreca = models.ForeignKey(Nesrece, on_delete=models.CASCADE)
+    simptom = models.ForeignKey(Simptomi, on_delete=models.CASCADE)
+    prva_pomoc = models.ForeignKey(
+        PostupciPrvePomoci, on_delete=models.CASCADE, null=True, blank=True)
+
+
 class RezultatiTestiranja(models.Model):
     id = models.AutoField(primary_key=True)
     korisnikid = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -52,12 +54,3 @@ class RezultatiTestiranja(models.Model):
 
     def __str__(self):
         return self.rezultat
-
-
-class HistorijaNesreca(models.Model):
-    id = models.AutoField(primary_key=True)
-    korisnikid = models.ForeignKey(User, on_delete=models.CASCADE)
-    nesreca = models.ForeignKey(Nesrece, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.korisnikid
