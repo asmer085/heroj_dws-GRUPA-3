@@ -35,9 +35,6 @@ class PostupciPrvePomoci(models.Model):
     nesreca = models.ForeignKey(Nesrece, on_delete=models.CASCADE)
     opis = models.TextField()
 
-    def __str__(self):
-        return self.nesreca
-
 
 class Nesrece_Simptomi(models.Model):
     id = models.AutoField(primary_key=True)

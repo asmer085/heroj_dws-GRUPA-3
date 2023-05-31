@@ -1,7 +1,7 @@
 import React from "react";
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
-import Navbar2 from "./Navbar2";
+import LogovaniNavbar from "./LogovaniNavbar";
 import Typography from "@mui/material/Typography";
 import avatar from '../Slike/avatar.jpg';
 
@@ -10,7 +10,7 @@ const AboutComponenta = () => {
 
   return (
   <>
-    <Navbar2/>
+    <LogovaniNavbar/>
     <Box sx={ {display :"flex", justifyContent:"center", alignItems: 'center'} }>
       <Box component="img" sx={{ height: 100, borderRadius: '80px', position: 'absolute', top: '150px', center: '40px'}} src={avatar}/>
       <Paper elevation={10} style={{marginTop: '50px', borderRadius: '10px', width: '500px', height: '500px' , display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
