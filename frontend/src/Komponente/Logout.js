@@ -16,7 +16,7 @@ const Logout = () => {
 
   return (
     <Box textAlign="center">
-      <Button variant="contained" onClick={handleLogout}>
+      <Button color="inherit" onClick={handleLogout}>
         Logout
       </Button>
     </Box>

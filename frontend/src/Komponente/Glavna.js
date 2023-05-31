@@ -1,4 +1,5 @@
 import Navbar2 from "./Navbar2"
+import LogovaniNavbar from "./LogovaniNavbar"
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import logo from "../Slike/logo.png";
@@ -8,7 +9,10 @@ import Pretraga from "./Pretraga";
 function Glavna() {
     return (
     <>
-    <Navbar2/>
+    {
+        localStorage.getItem('token') ? <LogovaniNavbar/> : <Navbar2/>
+    }
+
     <Box style={{ width: '400px', height: '10px' }} sx = {{m: "auto"}}>
         <br/>
         <Typography variant = "h3">Mi smo Heroj App</Typography>
