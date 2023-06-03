@@ -2,11 +2,14 @@ import Navbar2 from "./Navbar2"
 import LogovaniNavbar from "./LogovaniNavbar"
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import logo from "../Slike/logo.png";
 import Pretraga from "./Pretraga";
+import { useNavigate } from "react-router-dom";
 
 
 function Glavna() {
+    const navigate = useNavigate()
     return (
     <>
     {
@@ -22,6 +25,7 @@ function Glavna() {
         <br/>
         <Box component="img"sx={{ height: 300}} alt="Logo" src={logo}/>
         <Pretraga/>
+        <Button onClick = {() => navigate('/uploadform')} variant = 'contained' color = 'secondary'>klikni</Button>
     </Box>
     </>
     )
