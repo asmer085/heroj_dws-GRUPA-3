@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.urls import reverse
 
 class Pitanja(models.Model):
     id = models.AutoField(primary_key=True)
@@ -51,3 +51,14 @@ class RezultatiTestiranja(models.Model):
 
     def __str__(self):
         return self.rezultat
+
+
+class PDFFajlovi(models.Model):
+    id = models.AutoField(primary_key=True)
+    naziv = models.CharField(max_length=50)
+    fajl = models.FileField(upload_to='pdf-fajlovi/', blank=True)
+    odobreno = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.naziv
+

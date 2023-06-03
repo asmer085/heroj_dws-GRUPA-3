@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount', # new
     'dj_rest_auth',
     'dj_rest_auth.registration', # new
+    'django_admin_filters',
     # Local
     'herojAPI',
     #komunikacija frontend backend
@@ -80,7 +81,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     #komunikacija frontend backend
     'corsheaders.middleware.CorsMiddleware',
-
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -152,3 +152,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_URL = '/media/' 
+MEDIA_ROOT = str(BASE_DIR.joinpath('media'))
+
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True
