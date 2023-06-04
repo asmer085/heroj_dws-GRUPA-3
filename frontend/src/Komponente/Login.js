@@ -23,19 +23,28 @@ const Login = () => {
 
   const navigate = useNavigate(); // za navigiranje nakon pritiska na sign in
 
-  const handleSubmit = async e => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-
+  
     try {
       const response = await axios.post("http://127.0.0.1:8000/api/v1/dj-rest-auth/login/", values);
-      const { token, user } = response.data;
-
-      localStorage.setItem("token", token);
+      console.log('Response:', response); // Debug: Log the entire response object
+      console.log('Response data:', response.data); // Debug: Log the response data
+  
+      const { key, user } = response.data; // Change 'token' to 'key'
+      console.log('Token:', key); // Debug: Check if the token is received correctly
+  
+      localStorage.setItem("token", key); // Change 'token' to 'key'
       localStorage.setItem("user", JSON.stringify(user));
-
-      navigate('/logovani');
+  
+      console.log('Stored Token:', localStorage.getItem("token")); // Debug: Check the stored token value
+  
+      navigate('/');
     } catch (error) {
+      console.log('Error:', error); // Debug: Log the error object for further investigation
+  
       if (error.response && error.response.status === 400) {
         setError("Invalid username or password. Please try again.");
       } else {
@@ -47,7 +56,7 @@ const Login = () => {
   return (
     <>
       <Navbar2 />
-      <Box className='form-container' style={{ width: '200px', height: '10px' }} sx={{ m: "auto" }}>
+      <Box style={{ width: '200px', height: '10px' }} sx={{ m: "auto" }}>
         <Box component="img"
           sx={{ height: 150 }}
           src={logo} />
@@ -83,7 +92,7 @@ const Login = () => {
           )}
 
           <Box textAlign='center'>
-            <Button variant="contained" className="input-btn" type="submit" onClick={handleSubmit}>
+            <Button variant="contained" color="secondary" className="input-btn" type="submit" onClick={handleSubmit}>
               Sign in
             </Button>
           </Box>

@@ -31,7 +31,7 @@ const Register = () => {
     try {
       await axios.post("http://127.0.0.1:8000/api/v1/dj-rest-auth/registration/", values);
       // Registracija uspjela, navigiramo na logovane
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       // errori
       if (error.response) {
@@ -104,7 +104,7 @@ const Register = () => {
           </Box><br />
 
           <Box textAlign='center'>
-            <Button variant="contained" className="input-btn" type="submit" onClick={handleSubmit}>Register</Button>
+            <Button variant = 'contained' color = 'secondary' className="input-btn" type="submit" onClick={handleSubmit}>Register</Button>
           </Box>
 
           <br />

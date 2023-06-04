@@ -1,10 +1,19 @@
 from django.http import HttpResponse
 from rest_framework import generics
 from rest_framework.decorators import api_view
-from django.contrib.auth import get_user_model  # new
+from django.contrib.auth import get_user_model  
+from .forms import PDFFajloviForm
+from django.http import JsonResponse
+from rest_framework.views import APIView
+from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.response import Response
+from rest_framework import status
+from django.http import JsonResponse
+from django.http import HttpResponse
 
-from .models import Simptomi, Nesrece_Simptomi, Pitanja, Nesrece, PostupciPrvePomoci, RezultatiTestiranja
-from .serializers import SimptomiSerializer, Nesrece_SimptomiSerializer, PitanjaSerializer, NesreceSerializer, PostupciPrvePomociSerializer, RezulttiTestiranjaSerializer, UserSerializer
+
+from .models import Simptomi, Nesrece_Simptomi, Pitanja, Nesrece, PostupciPrvePomoci, RezultatiTestiranja, PDFFajlovi, VideoPrimjeri
+from .serializers import SimptomiSerializer, Nesrece_SimptomiSerializer, PitanjaSerializer, NesreceSerializer, PostupciPrvePomociSerializer, RezulttiTestiranjaSerializer, UserSerializer, PDFFajloviSerializer, VideoPrimjeriSerializer
 
 # 6. Da bi sada mogli primati post, get put ili delete metode moramo u view-u
 # dodati anotacije za funkcije koje rade post, get, put ili delete.
@@ -18,12 +27,12 @@ def test(request):
     return HttpResponse("Test")
 
 
-class UserList(generics.ListCreateAPIView):  # new
+class UserList(generics.ListCreateAPIView): 
     queryset = get_user_model().objects.all()
     serializer_class = UserSerializer
 
 
-class UserDetail(generics.RetrieveUpdateDestroyAPIView):  # new
+class UserDetail(generics.RetrieveUpdateDestroyAPIView): 
     queryset = get_user_model().objects.all()
     serializer_class = UserSerializer
 
@@ -86,3 +95,48 @@ class RezultatiTestiranjaList(generics.ListCreateAPIView):
 class RezultatiTestiranjaDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = RezultatiTestiranja.objects.all()
     serializer_class = RezulttiTestiranjaSerializer
+
+class PDFFajloviList(generics.ListCreateAPIView):
+    queryset = PDFFajlovi.objects.all()
+    serializer_class = PDFFajloviSerializer
+
+
+class PDFFajloviDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = PDFFajlovi.objects.all()
+    serializer_class = PDFFajloviSerializer
+
+
+class PDFFajloviView(APIView):
+    parser_classes = (MultiPartParser, FormParser)
+
+    def get(self, request, *args, **kwargs):
+        posts = PDFFajlovi.objects.all()
+        serializer = PDFFajloviSerializer(posts, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, *args, **kwargs):
+        posts_serializer = PDFFajloviSerializer(data=request.data)
+        if posts_serializer.is_valid():
+            posts_serializer.save()
+            return Response(posts_serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            print('error', posts_serializer.errors)
+            return Response(posts_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+
+def get_file(request, file_id):
+    file_obj = PDFFajlovi.objects.get(id=file_id)
+    response_data = {
+        'fileUrl': file_obj.fajl.url
+    }
+    return JsonResponse(response_data)
+
+
+class VideoPrimjeriList(generics.ListCreateAPIView):
+    queryset = VideoPrimjeri.objects.all()
+    serializer_class = VideoPrimjeriSerializer
+
+
+class VideoPrimjeriDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = VideoPrimjeri.objects.all()
+    serializer_class = VideoPrimjeriSerializer
