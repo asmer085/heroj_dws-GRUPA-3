@@ -104,7 +104,7 @@ const Register = () => {
           </Box><br />
 
           <Box textAlign='center'>
-            <Button variant="contained" className="input-btn" type="submit" onClick={handleSubmit}>Register</Button>
+            <Button variant = 'contained' color = 'secondary' className="input-btn" type="submit" onClick={handleSubmit}>Register</Button>
           </Box>
 
           <br />

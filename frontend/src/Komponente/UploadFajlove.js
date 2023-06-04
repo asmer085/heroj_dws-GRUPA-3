@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { Box, Button, TextField } from '@mui/material';
+import { TextField, Button, Typography, Input, Box } from "@mui/material";
 import axios from 'axios';
+import LogovaniNavbar from "./LogovaniNavbar";
+
 
 /* const FileUploadForm = () => {
   const [name, setName] = useState('');
@@ -80,10 +82,11 @@ class UploadFajlove extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     console.log(this.state);
+    console.log(this.state.fajl.name)
     let form_data = new FormData();
     form_data.append('fajl', this.state.fajl, this.state.fajl.name);
     form_data.append('naziv', this.state.naziv);
-    let url = 'http://localhost:8000/api/pdffajlovi/';
+    let url = 'http://127.0.0.1:8000/api/v1/pdffajlovi/';
     axios.post(url, form_data, {
       headers: {
         'content-type': 'multipart/form-data'
@@ -95,21 +98,27 @@ class UploadFajlove extends Component {
         .catch(err => console.log(err))
   };
 
+
+
   render() {
     return (
-      <div >
+      <React.Fragment>
+      <LogovaniNavbar/>
+      <p/>
+      <Box style={{ width: '400px', height: '10px' }} sx={{ m: "auto" }} >
         <form onSubmit={this.handleSubmit}>
-          <p>
-            <input type="text" placeholder='Title' id='naziv' value={this.state.naziv} onChange={this.handleChange} required/>
-          </p>
-          <p>
-            <input type="file"
-                   id="fajl"
-                   accept=".pdf"  onChange={this.handleImageChange} required/>
-          </p>
-          <input type="submit"/>
+          <Typography variant='h5'>Upload your own study material!</Typography>
+          <p/>
+          <TextField variant="outlined" color="secondary" placeholder='File Name' sx={{mb: 3}} component="label"> 
+              <input onChange={this.handleChange} value={this.state.naziv}  required hidden> </input>     
+          </TextField> 
+          <p/>
+          <Input type="file" id="fajl" accept=".pdf"  onChange={this.handleImageChange} required hidden > </Input> 
+          <p/>
+          <Button variant = 'contained' color = 'secondary' type="submit" size="small">Submit</Button>
         </form>
-      </div>
+      </Box>
+      </React.Fragment>
     );
   }
 }

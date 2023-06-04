@@ -47,7 +47,7 @@ const Login = () => {
   return (
     <>
       <Navbar2 />
-      <Box className='form-container' style={{ width: '200px', height: '10px' }} sx={{ m: "auto" }}>
+      <Box style={{ width: '200px', height: '10px' }} sx={{ m: "auto" }}>
         <Box component="img"
           sx={{ height: 150 }}
           src={logo} />
@@ -83,7 +83,7 @@ const Login = () => {
           )}
 
           <Box textAlign='center'>
-            <Button variant="contained" className="input-btn" type="submit" onClick={handleSubmit}>
+            <Button variant="contained" color = 'secondary' className="input-btn" type="submit" onClick={handleSubmit}>
               Sign in
             </Button>
           </Box>
@@ -91,7 +91,7 @@ const Login = () => {
           <br />
 
           <Box textAlign='center'>
-            <Button variant="contained" className="input-btn" sx={{ marginBottom: "5px" }}>
+            <Button variant = 'contained'  className="input-btn" sx={{ marginBottom: "5px" }}>
               <Link to='/register' className='nav-links' style={{ textDecoration: 'none', color: "#F6F6F6" }}>
                 Sign up
               </Link>

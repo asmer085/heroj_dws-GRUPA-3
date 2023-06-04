@@ -25,7 +25,7 @@ function Glavna() {
         <br/>
         <Box component="img"sx={{ height: 300}} alt="Logo" src={logo}/>
         <Pretraga/>
-        <Button onClick = {() => navigate('/uploadform')} variant = 'contained' color = 'secondary'>klikni</Button>
+       
     </Box>
     </>
     )
