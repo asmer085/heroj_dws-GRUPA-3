@@ -11,7 +11,6 @@ function Logovani() {
         <LogovaniNavbar/>
         <br/>
         <MojGrid/>
-        <Button onClick = {() => navigate('/viewfajlove')} variant = 'contained' color = 'secondary'>klikni</Button>
         </>
     )
 }

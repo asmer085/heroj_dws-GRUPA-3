@@ -13,7 +13,7 @@ import test from '../Slike/test.jpg';
 import { useNavigate } from 'react-router-dom';
 
 
-function MojaKartica({slika, tekst,url}) {
+function MojaKartica({slika, tekst, url}) {
   const navigate = useNavigate();
   return (
     <Card sx = {{ borderRadius: '16px' }} style = {{backgroundColor: "black"}}>
@@ -43,7 +43,7 @@ function MojGrid() {
     <div> 
 
         <Typography align = "center" color = "text.primary" variant="h4">
-            Prvu pomoć treba znati svako!
+            Learning resources
         </Typography>
         <br/>
        
@@ -52,15 +52,15 @@ function MojGrid() {
         <Grid container spacing = {5} direction="row" alignItems="center" justifyContent="center" >
 
           <Grid>
-            <MojaKartica slika = {druga} tekst = "Učenje za ispit" url = "fajlovi/"/>
+            <MojaKartica slika = {druga} tekst = "Study material" url = "viewfajlove/"/>
           </Grid>
 
           <Grid>
-            <MojaKartica slika = {prva} tekst = "Praktični primjeri" url="video/"/>
+            <MojaKartica slika = {prva} tekst = "Practical examples" url="video/"/>
           </Grid>
 
           <Grid>
-            <MojaKartica slika = {test} tekst = "Simulacija ispita" url="fajlovi/"/>
+            <MojaKartica slika = {test} tekst = "Quiz me" url="fajlovi/"/>
           </Grid>
 
         </Grid>

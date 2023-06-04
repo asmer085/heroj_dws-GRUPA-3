@@ -1,5 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,} from 'react';
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import List from '@mui/material/List';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
+import FileOpenIcon from '@mui/icons-material/FileOpen';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import LogovaniNavbar from "./LogovaniNavbar";
 
 const ViewFajlove = ({ fileId }) => {
   const [fileUrl, setFileUrl] = useState('');
@@ -9,7 +19,7 @@ const ViewFajlove = ({ fileId }) => {
     if (fileId) {
       const apiUrl = `http://127.0.0.1:8000/api/pdffajlovi/${fileId}/`;
       const token = localStorage.getItem('token');
-      setIsLoading(true); // Set loading state to true before making the request
+      setIsLoading(true); 
       axios
         .get(apiUrl, {
           headers: {
@@ -18,13 +28,13 @@ const ViewFajlove = ({ fileId }) => {
         })
         .then(response => {
           console.log('API Response:', response.data);
-          setFileUrl(response.data.fajl); // Set the file URL from the response data
+          setFileUrl(response.data.fajl);
         })
         .catch(error => {
           console.error('Error fetching file:', error);
         })
         .finally(() => {
-          setIsLoading(false); // Set loading state to false after the request is completed
+          setIsLoading(false); 
         });
     }
   }, [fileId]);
@@ -42,11 +52,11 @@ const ViewFajlove = ({ fileId }) => {
     return <div>Loading...</div>;
   }
 
+
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="submit" value="Go to File" />
-    </form>
-  );
+    <IconButton target="_blank" href= {fileUrl} variant='outlined' color='secondary'> <FileOpenIcon/> </IconButton>
+      )
+
 };
 
 const IzlistajFajlove = () => {
@@ -70,13 +80,31 @@ const IzlistajFajlove = () => {
       });
   }, []);
 
+  const navigate = useNavigate();
+
   return (
     <>
-      {posts.map(post => (
-        <ViewFajlove key={post.id} fileId={post.id} />
-      ))}
-    </>
-  );
-};
+    <LogovaniNavbar/>
+    <List sx={{ width: '100%', maxWidth: 360}}>
+      {posts && posts.map(post => {
+        if (post.odobreno) {
+          return (
+            <ListItem key={post.id}>
+              <ViewFajlove fileId={post.id} /> 
+              <ListItemText primary={post.naziv} />
+            </ListItem>
+          );
+        }
+        return null
+      })}
+    </List>
+    <Box sx={{ m: 4}}> 
+    <Typography variant='h7'>Do you want to add your own files?</Typography> 
+    <p/>
+    <Button size = 'small' variant = 'contained' color = 'secondary' onClick={() => navigate('/uploadform')}>Click here</Button>
+    </Box>
+  </>
+);
+}
 
 export default IzlistajFajlove;

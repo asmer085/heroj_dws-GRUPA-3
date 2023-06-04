@@ -16,9 +16,10 @@ function LogovaniNavbar() {
           <Toolbar>
             <Typography variant="paragraph" component="div" sx={{ flexGrow: 1 }}>
             <WavingHandIcon />
-               Pozdrav 
+               Hello 
             </Typography>
             <Button color="inherit" onClick = {() => navigate('/')}>Home</Button>
+            <Button color = "inherit" onClick = {() => navigate('/logovani')}>Study</Button>
             <Button color = "inherit" onClick = {() => navigate('/about')}>About me</Button>
             <Logout/>
           </Toolbar>

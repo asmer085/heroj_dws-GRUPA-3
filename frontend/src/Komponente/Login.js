@@ -41,7 +41,7 @@ const Login = () => {
   
       console.log('Stored Token:', localStorage.getItem("token")); // Debug: Check the stored token value
   
-      navigate('/logovani');
+      navigate('/');
     } catch (error) {
       console.log('Error:', error); // Debug: Log the error object for further investigation
   
