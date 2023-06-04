@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Simptomi, Nesrece_Simptomi, Pitanja, Nesrece, PostupciPrvePomoci, RezultatiTestiranja, PDFFajlovi
+from .models import Simptomi, Nesrece_Simptomi, Pitanja, Nesrece, PostupciPrvePomoci, RezultatiTestiranja, PDFFajlovi, VideoPrimjeri
 from django.contrib.auth import get_user_model  
 
 
@@ -46,5 +46,10 @@ class RezulttiTestiranjaSerializer(serializers.ModelSerializer):
 
 class PDFFajloviSerializer(serializers.ModelSerializer):
     class Meta:
-        fields = ('id', 'naziv', 'fajl',)
+        fields = ('id', 'naziv', 'fajl', 'odobreno')
         model = PDFFajlovi
+
+class VideoPrimjeriSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = ('id', 'naslov', 'link_videa')
+        model = VideoPrimjeri
