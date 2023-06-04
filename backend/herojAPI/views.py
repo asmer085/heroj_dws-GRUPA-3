@@ -8,6 +8,8 @@ from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from rest_framework import status
+from django.http import JsonResponse
+from django.http import HttpResponse
 
 
 from .models import Simptomi, Nesrece_Simptomi, Pitanja, Nesrece, PostupciPrvePomoci, RezultatiTestiranja, PDFFajlovi
@@ -103,8 +105,8 @@ class PDFFajloviDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = PDFFajlovi.objects.all()
     serializer_class = PDFFajloviSerializer
 
-
-""" def upload_file(request):
+"""
+ def upload_file(request):
     if request.method == 'POST':
      form = PDFFajloviForm(request.POST, request.FILES)
         if form.is_valid():
@@ -121,8 +123,8 @@ class PDFFajloviDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 def upload_success(request):
-    return render(request) """
-
+    return render(request) 
+"""
 
 class PDFFajloviView(APIView):
     parser_classes = (MultiPartParser, FormParser)
@@ -140,3 +142,11 @@ class PDFFajloviView(APIView):
         else:
             print('error', posts_serializer.errors)
             return Response(posts_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+
+def get_file(request, file_id):
+    file_obj = PDFFajlovi.objects.get(id=file_id)
+    response_data = {
+        'fileUrl': file_obj.fajl.url
+    }
+    return JsonResponse(response_data)

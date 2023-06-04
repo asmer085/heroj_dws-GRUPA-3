@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import SimptomiList, Nesrece_SimptomiList, SimptomiDetail, Nesrece_SimptomiDetail, PitanjaList, PitanjaDetail, NesreceList, NesreceDetail, PostupciPrvePomociList, PostupciPrvePomociDetail, RezultatiTestiranjaList, RezultatiTestiranjaDetail, UserList, UserDetail, PDFFajloviDetail, PDFFajloviList
-
+from .views import SimptomiList, Nesrece_SimptomiList, SimptomiDetail, Nesrece_SimptomiDetail, PitanjaList, PitanjaDetail, NesreceList, NesreceDetail, PostupciPrvePomociList, PostupciPrvePomociDetail, RezultatiTestiranjaList, RezultatiTestiranjaDetail, UserList, UserDetail, PDFFajloviView
+from .views import get_file
 from . import views
 urlpatterns = [
     path('pitanja/<int:pk>/', PitanjaDetail.as_view()),
@@ -17,7 +17,8 @@ urlpatterns = [
     path('rezultatitestiranja/', RezultatiTestiranjaList.as_view()),
     path('users/', UserList.as_view()),  
     path('users/<int:pk>/', UserDetail.as_view()),  
-    path('pdffajlovi/', views.PDFFajloviView.as_view(), name= 'pdffajlovi_list')
+    path('pdffajlovi/', views.PDFFajloviView.as_view(), name= 'pdffajlovi_list'),
+    path('fajlovii/<int:file_id>/', get_file, name='get_file'),
    # path('upload/', upload_file, name='upload'),
    # path('success/', upload_success, name='success'),
     
