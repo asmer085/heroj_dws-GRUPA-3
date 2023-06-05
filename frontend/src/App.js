@@ -6,6 +6,7 @@ import Register from "./Komponente/Register"
 import About from "./Komponente/About"
 import Video from "./Komponente/Video";
 import FileUploadForm from "./Komponente/UploadFajlove";
+import SearchFile from "./Komponente/SearchFile";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/video" element={<Video />} />
         <Route path="/uploadform" element={<FileUploadForm />} />
+        <Route path="/search" element={<SearchFile/>}/>
       </Routes>
     </div>
 
