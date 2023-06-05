@@ -2,10 +2,19 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 
+class Odgovori(models.Model):
+    odgovor = models.TextField()
+
+    def __str__(self):
+        return self.odgovor
+
+
 class Pitanja(models.Model):
     id = models.AutoField(primary_key=True)
     postavka = models.TextField()
-    tacan_odgovor = models.TextField()
+    tacan_odgovor = models.ForeignKey(Odgovori, on_delete=models.CASCADE, null=True, blank=True, related_name='pitanja_tacan')
+    netacan_odgovor1 = models.ForeignKey(Odgovori, on_delete=models.CASCADE, null=True, blank=True, related_name='pitanja_netacan1')
+    netacan_odgovor2 = models.ForeignKey(Odgovori, on_delete=models.CASCADE, null=True, blank=True, related_name='pitanja_netacan2')
     tezina = models.IntegerField()
 
     def __str__(self):

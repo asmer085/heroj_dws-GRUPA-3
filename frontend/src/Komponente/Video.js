@@ -15,7 +15,13 @@ export default function Video() {
   const [post, setPost] = useState(null);
 
   useEffect(() => {
-    axios.get(baseURL + "videoprimjeri/")
+    const token = localStorage.getItem('token');
+
+    axios.get(baseURL + "videoprimjeri/", {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    })
       .then(response => {
         setPost(response.data); 
         console.log(response.data)
