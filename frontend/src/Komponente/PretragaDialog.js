@@ -13,6 +13,8 @@ function PretragaDialog(props) {
   useEffect(() => {
     if (!otvorenDialogPretrage || !odabranaNesreca) return;
 
+    console.info("ID  ", odabranaNesreca.id)
+
     axios
       .get(apiURL + "?nesreca=" + odabranaNesreca.id)
       .then((response) => {

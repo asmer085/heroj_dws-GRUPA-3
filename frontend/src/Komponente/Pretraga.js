@@ -52,13 +52,14 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const apiURL = "http://127.0.0.1:8000/api/v1/nesrece/";
+const apiURL = "http://127.0.0.1:8000/api/v1/simptomi/";
 
 function Pretraga() {
   const [inputVrijednost, setInputVrijednost] = useState("");
   const [nesrece, setNesrece] = useState(null);
   const [odabranaNesreca, setOdabranaNesreca] = useState(null);
   const [otvorenDialogPretrage, setOtvorenDialogPretrage] = useState(false);
+  
   const otvoriDialogPretrage = (nesreca) => {
     setOdabranaNesreca(nesreca);
     setOtvorenDialogPretrage(true);
@@ -72,7 +73,7 @@ function Pretraga() {
     if (!inputVrijednost) return;
 
     axios
-      .get(apiURL + "?vrsta__icontains=" + inputVrijednost)
+      .get(apiURL + "?naziv__icontains=" + inputVrijednost)
       .then((response) => {
         setNesrece(response.data);
         console.log(response.data);
@@ -104,7 +105,7 @@ function Pretraga() {
                 onClick={() => otvoriDialogPretrage(result)}
                 key={result.id}
               >
-                <ListItemText primary={result.vrsta} />
+                <ListItemText primary={result.naziv} />
               </ListItemButton>
             </ListItem>
           ))}

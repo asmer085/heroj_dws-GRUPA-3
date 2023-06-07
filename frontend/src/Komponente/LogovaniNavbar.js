@@ -18,6 +18,8 @@ function LogovaniNavbar() {
                Pozdrav 
             </Typography>
             <Button color="inherit" onClick = {() => navigate('/')}>Home</Button>
+            <Button color = "inherit" onClick = {() => navigate('/about')}>About me</Button>
+            
           </Toolbar>
         </AppBar>
       </Box>
