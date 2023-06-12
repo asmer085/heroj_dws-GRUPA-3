@@ -10,6 +10,8 @@ import FileOpenIcon from '@mui/icons-material/FileOpen';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import LogovaniNavbar from "./LogovaniNavbar";
+import PretragaFajlova from './PretragaFajlova';
+
 
 const ViewFajlove = ({ fileId }) => {
   const [fileUrl, setFileUrl] = useState('');
@@ -102,6 +104,7 @@ const IzlistajFajlove = () => {
     <Typography variant='h7'>Do you want to add your own files?</Typography> 
     <p/>
     <Button size = 'small' variant = 'contained' color = 'secondary' onClick={() => navigate('/uploadform')}>Click here</Button>
+    <PretragaFajlova/>
     </Box>
   </>
 );
