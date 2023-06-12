@@ -1,0 +1,207 @@
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import FormControl from "@mui/material/FormControl";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormLabel from "@mui/material/FormLabel";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Unstable_Grid2";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+const IspitnaPitanja = ({ pitanja }) => {
+  let navigate = useNavigate();
+
+  const [brojTrenutnogPitanja, setBrojTrenutnogPitanja] = useState(0);
+  const [odabraniOdgovor, setOdabraniOdgovor] = useState("");
+  const [rezultat, setRezultat] = useState(0);
+  const [zavrsio, setZavrsio] = useState(false);
+  const [odgovorio, setOdgovorio] = useState(false);
+
+  const provjeriOdgovor = (answer) => {
+    setOdabraniOdgovor(answer);
+    setOdgovorio(true);
+  };
+
+  const provjeriTacanOdgovor = () => {
+    if (odabraniOdgovor === pitanja[brojTrenutnogPitanja].tacanOdgovor) {
+      setRezultat(rezultat + 1);
+    }
+  };
+
+  const zavrsiIspit = () => {
+    if (brojTrenutnogPitanja === pitanja.length - 1) {
+      setZavrsio(true);
+    }
+  };
+
+  const resetujIspit = () => {
+    setOdgovorio(false);
+  };
+
+  const pokreniPonovo = () => {
+    setBrojTrenutnogPitanja(0);
+    setZavrsio(false);
+    setOdabraniOdgovor("");
+    setRezultat(0);
+  };
+
+  if (!pitanja.length)
+    return (
+      <Box align="center" sx={{ width: "100%" }}>
+        Ucitavam ispitna pitanja....
+      </Box>
+    );
+
+  return (
+    <div>
+      <Box align="center" sx={{ width: "100%" }}>
+        <Grid
+          container
+          spacing={5}
+          direction="row"
+          alignItems="center"
+          justifyContent="center"
+        >
+          {zavrsio ? (
+            <Card
+              sx={{ borderRadius: "16px" }}
+              style={{ backgroundColor: "black" }}
+            >
+              <CardContent>
+                <Typography
+                  align="center"
+                  color="text.primary"
+                  variant="paragraph"
+                >{`Vas rezultat je ${rezultat}/${pitanja.length}`}</Typography>
+                <Box width={"100%"} mt={1}>
+                  <Button
+                    size="small"
+                    variant="outlined"
+                    color="secondary"
+                    onClick={() => pokreniPonovo()}
+                  >
+                    Pokreni ponovo
+                  </Button>
+                  <Button
+                    size="small"
+                    variant="outlined"
+                    color="secondary"
+                    onClick={() => navigate("/kviz")}
+                  >
+                    Nazad
+                  </Button>
+                </Box>
+              </CardContent>
+            </Card>
+          ) : (
+            <div>
+              <Card
+                sx={{ borderRadius: "16px" }}
+                style={{ backgroundColor: "black" }}
+              >
+                <CardContent>
+                  <Typography
+                    align="center"
+                    color="text.primary"
+                    variant="paragraph"
+                  >
+                    {`(${brojTrenutnogPitanja + 1}/${pitanja.length}) - ${
+                      pitanja[brojTrenutnogPitanja].postavka
+                    }`}
+                  </Typography>
+                  <Box>
+                    {pitanja[brojTrenutnogPitanja].odgovori.map((answer, i) => (
+                      <FormControl sx={{ m: 1 }} variant="standard" key={i}>
+                        <FormLabel id="demo-radio-buttons-group-label"></FormLabel>
+                        <RadioGroup
+                          aria-labelledby="demo-error-radios"
+                          name="quiz"
+                          value={odabraniOdgovor}
+                          onClick={() => provjeriOdgovor(answer)}
+                        >
+                          <FormControlLabel
+                            value={answer}
+                            name="answer"
+                            control={<Radio />}
+                            label={answer}
+                          />
+                        </RadioGroup>
+                      </FormControl>
+                    ))}
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                      }}
+                    >
+                      {brojTrenutnogPitanja === 0 && (
+                        <Button
+                          size="small"
+                          variant="outlined"
+                          color="secondary"
+                          onClick={() => navigate("/kviz")}
+                        >
+                          Nazad
+                        </Button>
+                      )}
+                      {brojTrenutnogPitanja >= 1 && (
+                        <Button
+                          size="small"
+                          variant="outlined"
+                          color="secondary"
+                          onClick={() => {
+                            setBrojTrenutnogPitanja(brojTrenutnogPitanja - 1);
+                            provjeriTacanOdgovor();
+                          }}
+                        >
+                          Prethodno pitanje
+                        </Button>
+                      )}
+                      {odgovorio && (
+                        <>
+                          {brojTrenutnogPitanja < pitanja.length - 1 && (
+                            <Button
+                              size="small"
+                              variant="outlined"
+                              color="secondary"
+                              onClick={() => {
+                                setBrojTrenutnogPitanja(
+                                  brojTrenutnogPitanja + 1
+                                );
+                                provjeriTacanOdgovor();
+                                resetujIspit();
+                              }}
+                            >
+                              Sljedece pitanje
+                            </Button>
+                          )}
+                          {brojTrenutnogPitanja === pitanja.length - 1 && (
+                            <Button
+                              size="small"
+                              variant="outlined"
+                              color="secondary"
+                              onClick={() => zavrsiIspit()}
+                            >
+                              Zavrsi ispit
+                            </Button>
+                          )}
+                        </>
+                      )}
+                    </Box>
+                  </Box>
+                </CardContent>
+              </Card>
+            </div>
+          )}
+        </Grid>
+      </Box>
+    </div>
+  );
+};
+
+export default IspitnaPitanja;

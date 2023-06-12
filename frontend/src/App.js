@@ -6,7 +6,10 @@ import Register from "./Komponente/Register"
 import About from "./Komponente/About"
 import Video from "./Komponente/Video";
 import FileUploadForm from "./Komponente/UploadFajlove";
-import ViewFajlove from "./Komponente/ViewFajlove" 
+import ViewFajlove from "./Komponente/ViewFajlove";
+import Kviz from "./Komponente/Kviz";
+import SimulacijaIspita from "./Komponente/SimulacijaIspita";
+import Ispit from "./Komponente/Ispit";
 
 function App() {
   return (
@@ -20,7 +23,9 @@ function App() {
         <Route path="/video" element={<Video />} />
         <Route path="/uploadform" element={<FileUploadForm />} />
         <Route path="/viewfajlove" element={<ViewFajlove />} />
-      
+        <Route path="/kviz" element={<Kviz />} />
+        <Route path="/simulacija-ispita" element={<SimulacijaIspita />} />
+        <Route path="/ispit" element={<Ispit />} />      
       </Routes>
     </div>
 

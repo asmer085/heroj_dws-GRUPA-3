@@ -60,7 +60,7 @@ function MojGrid() {
           </Grid>
 
           <Grid>
-            <MojaKartica slika = {test} tekst = "Quiz me" url="fajlovi/"/>
+            <MojaKartica slika = {test} tekst = "Quiz me" url="kviz/"/>
           </Grid>
 
         </Grid>
