@@ -30,20 +30,24 @@ const Login = () => {
   
     try {
       const response = await axios.post("http://127.0.0.1:8000/api/v1/dj-rest-auth/login/", values);
-      console.log('Response:', response); // Debug: Log the entire response object
-      console.log('Response data:', response.data); // Debug: Log the response data
+      console.log('Response:', response);
+      console.log('Response data:', response.data);
   
-      const { key, user } = response.data; // Change 'token' to 'key'
-      console.log('Token:', key); // Debug: Check if the token is received correctly
+      const { key } = response.data; // Get the token from response.data
   
-      localStorage.setItem("token", key); // Change 'token' to 'key'
-      localStorage.setItem("user", JSON.stringify(user));
+      // Get the username from values
+      const { username } = values;
   
-      console.log('Stored Token:', localStorage.getItem("token")); // Debug: Check the stored token value
+      console.log('Token:', key);
+      localStorage.setItem("token", key); // Store the token in local storage
+      localStorage.setItem("username", username); // Store the username in local storage
+  
+      console.log('Stored Token:', localStorage.getItem("token"));
+      console.log('Stored Username:', localStorage.getItem("username"));
   
       navigate('/');
     } catch (error) {
-      console.log('Error:', error); // Debug: Log the error object for further investigation
+      console.log('Error:', error);
   
       if (error.response && error.response.status === 400) {
         setError("Invalid username or password. Please try again.");
@@ -52,6 +56,7 @@ const Login = () => {
       }
     }
   };
+  
 
   return (
     <>

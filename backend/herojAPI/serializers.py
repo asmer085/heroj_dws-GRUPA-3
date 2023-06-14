@@ -1,17 +1,24 @@
 from rest_framework import serializers
-from .models import Simptomi, Nesrece_Simptomi, Pitanja, Nesrece, PostupciPrvePomoci, RezultatiTestiranja, PDFFajlovi, VideoPrimjeri
-from django.contrib.auth import get_user_model  
+from .models import Simptomi, Nesrece_Simptomi, Pitanja, Nesrece, PostupciPrvePomoci, RezultatiTestiranja, PDFFajlovi, VideoPrimjeri, Odgovori
+from django.contrib.auth import get_user_model
 
 
-class UserSerializer(serializers.ModelSerializer):  
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
         fields = ('id', 'username',)
 
 
+class OdgovoriSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = ('id', 'odgovor',)
+        model = Odgovori
+
+
 class PitanjaSerializer(serializers.ModelSerializer):
     class Meta:
-        fields = ('id', 'postavka', 'tacan_odgovor', 'tezina',)
+        fields = ('id', 'postavka', 'tacan_odgovor',
+                  'netacan_odgovor1', 'netacan_odgovor2', 'tezina',)
         model = Pitanja
 
 
@@ -44,10 +51,12 @@ class RezulttiTestiranjaSerializer(serializers.ModelSerializer):
         fields = ('id', 'korisnikid', 'rezultat',)
         model = RezultatiTestiranja
 
+
 class PDFFajloviSerializer(serializers.ModelSerializer):
     class Meta:
         fields = ('id', 'naziv', 'fajl', 'odobreno')
         model = PDFFajlovi
+
 
 class VideoPrimjeriSerializer(serializers.ModelSerializer):
     class Meta:

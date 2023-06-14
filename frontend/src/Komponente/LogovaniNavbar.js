@@ -10,13 +10,14 @@ import Logout from './Logout';
 
 function LogovaniNavbar() {
   const navigate = useNavigate();
+  const username = localStorage.getItem("username");
     return (
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
             <Typography variant="paragraph" component="div" sx={{ flexGrow: 1 }}>
             <WavingHandIcon />
-               Hello 
+                 Hello {username}
             </Typography>
             <Button color="inherit" onClick = {() => navigate('/')}>Home</Button>
             <Button color = "inherit" onClick = {() => navigate('/logovani')}>Study</Button>
