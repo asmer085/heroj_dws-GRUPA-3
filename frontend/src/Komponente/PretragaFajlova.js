@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, Button, List, ListItem, ListItemText } from '@mui/material';
-import pdfjsLib from 'pdfjs-dist';
+import { Document, Page, pdfjs } from 'react-pdf';
 import axios from 'axios';
-
 
 function PretragaFajlova() {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-   
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -16,7 +14,10 @@ function PretragaFajlova() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/api/pdffajlovi/');
+      const token = localStorage.getItem('token');
+      const headers = { Authorization: `Token ${token}` };
+
+      const response = await axios.get('http://127.0.0.1:8000/api/pdffajlovi/', { headers });
       setData(response.data);
     } catch (error) {
       console.error('Greška prilikom dohvata podataka:', error);
@@ -24,13 +25,11 @@ function PretragaFajlova() {
   };
 
   const handleSearch = async () => {
-    // Kreirajte niz putanja do PDF datoteka
-    
     try {
       const results = [];
       for (const pdfPath of data) {
-        const loadingTask = pdfjsLib.getDocument(pdfPath);
-        const pdf = await loadingTask.promise;
+        pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+        const pdf = await pdfjs.getDocument(pdfPath.fajl).promise;
 
         for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
           const page = await pdf.getPage(pageNum);
@@ -40,7 +39,7 @@ function PretragaFajlova() {
           if (matches.length > 0) {
             matches.forEach(match => {
               results.push({
-                pdfPath,
+                pdfPath: pdfPath.fajl,
                 pageNum,
                 boundingRect: match.transform,
               });
@@ -62,7 +61,7 @@ function PretragaFajlova() {
         value={searchTerm}
         onChange={event => setSearchTerm(event.target.value)}
       />
-      <Button variant="contained" onClick={handleSearch}  sx={{ marginTop: '15px',marginLeft:'5px',backgroundColor:'red'}}>
+      <Button variant="contained" onClick={handleSearch} sx={{ marginTop: '15px', marginLeft: '5px', backgroundColor: 'red' }}>
         Search
       </Button>
 
@@ -72,17 +71,18 @@ function PretragaFajlova() {
             <ListItemText
               primary={`Found in the file: ${result.pdfPath}, na stranici ${result.pageNum}`}
             />
-            <Button
-              sx={{backgroundColor:'red'}}
-              variant="contained"
-              href={`${result.pdfPath}#page=${result.pageNum}`}>
+            <a
+              href={`${result.pdfPath}#page=${result.pageNum}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               View
-            </Button>
+            </a>
           </ListItem>
         ))}
       </List>
     </div>
   );
-};
+}
 
 export default PretragaFajlova;
