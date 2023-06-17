@@ -4,9 +4,8 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import logo from "../Slike/logo.png";
-import Pretraga from "./Pretraga";
 import { useNavigate } from "react-router-dom";
-import PretragaSimptomi from "./PretragaSimptomi";
+import Pretraga from "./Pretraga";
 import backgroundImage from "../Slike/map_city.jpg";
 
 function Glavna() {
@@ -38,7 +37,7 @@ function Glavna() {
           </Typography>
           <br />
           <Box component="img" sx={{ height: 250 }} alt="Logo" src={logo} />
-          {localStorage.getItem("token") && <PretragaSimptomi />}
+          {localStorage.getItem("token") && <Pretraga />}
         </Box>
       </div>
     </>

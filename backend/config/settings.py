@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'dj_rest_auth',
     'dj_rest_auth.registration', # new
     'django_admin_filters',
+    'django_filters',  # new
     # Local
     'herojAPI',
     #komunikacija frontend backend
