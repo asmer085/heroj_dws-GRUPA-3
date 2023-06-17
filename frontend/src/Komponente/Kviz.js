@@ -18,7 +18,7 @@ function Kviz() {
       <LogovaniNavbar />
       <br />
       <Typography align="center" color="text.primary" variant="h4">
-        Kviz
+        Quiz
       </Typography>
       <br />
       <br />
@@ -32,10 +32,10 @@ function Kviz() {
         >
           <KarticaIspit
             slika={simulacija}
-            tekst="Simulacija Ispita"
+            tekst="Practice Exam"
             url="simulacija-ispita/"
           />
-          <KarticaIspit slika={ispit} tekst="Ispit" url="ispit/" />
+          <KarticaIspit slika={ispit} tekst="Exam" url="ispit/" />
         </Grid>
       </Box>
     </div>
@@ -62,7 +62,7 @@ function KarticaIspit({ slika, tekst, url }) {
               color="secondary"
               onClick={() => navigate("/" + url)}
             >
-              Pokreni
+              Start
             </Button>
           </Box>
         </CardActions>

@@ -70,7 +70,7 @@ const SimulacijaIspita = () => {
       <LogovaniNavbar />
       <br />
       <Typography align="center" color="text.primary" variant="h4">
-        Simulacija ispita
+      Practice Exam
       </Typography>
       <br />
       <br />

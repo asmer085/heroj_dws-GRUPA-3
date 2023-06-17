@@ -52,7 +52,7 @@ const IspitnaPitanja = ({ pitanja }) => {
   if (!pitanja.length)
     return (
       <Box align="center" sx={{ width: "100%" }}>
-        Ucitavam ispitna pitanja....
+        Loading....
       </Box>
     );
 
@@ -76,7 +76,7 @@ const IspitnaPitanja = ({ pitanja }) => {
                   align="center"
                   color="text.primary"
                   variant="paragraph"
-                >{`Vas rezultat je ${rezultat}/${pitanja.length}`}</Typography>
+                >{`Score ${rezultat}/${pitanja.length}`}</Typography>
                 <Box width={"100%"} mt={1}>
                   <Button
                     size="small"
@@ -84,7 +84,7 @@ const IspitnaPitanja = ({ pitanja }) => {
                     color="secondary"
                     onClick={() => pokreniPonovo()}
                   >
-                    Pokreni ponovo
+                    Start again
                   </Button>
                   <Button
                     size="small"
@@ -92,7 +92,7 @@ const IspitnaPitanja = ({ pitanja }) => {
                     color="secondary"
                     onClick={() => navigate("/kviz")}
                   >
-                    Nazad
+                    Back
                   </Button>
                 </Box>
               </CardContent>
@@ -146,7 +146,7 @@ const IspitnaPitanja = ({ pitanja }) => {
                           color="secondary"
                           onClick={() => navigate("/kviz")}
                         >
-                          Nazad
+                          Back
                         </Button>
                       )}
                       {brojTrenutnogPitanja >= 1 && (
@@ -159,7 +159,7 @@ const IspitnaPitanja = ({ pitanja }) => {
                             provjeriTacanOdgovor();
                           }}
                         >
-                          Prethodno pitanje
+                          Previous question
                         </Button>
                       )}
                       {odgovorio && (
@@ -177,7 +177,7 @@ const IspitnaPitanja = ({ pitanja }) => {
                                 resetujIspit();
                               }}
                             >
-                              Sljedece pitanje
+                              Next question
                             </Button>
                           )}
                           {brojTrenutnogPitanja === pitanja.length - 1 && (
@@ -187,7 +187,7 @@ const IspitnaPitanja = ({ pitanja }) => {
                               color="secondary"
                               onClick={() => zavrsiIspit()}
                             >
-                              Zavrsi ispit
+                              End
                             </Button>
                           )}
                         </>

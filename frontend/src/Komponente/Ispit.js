@@ -64,7 +64,7 @@ const Ispit = () => {
       <LogovaniNavbar />
       <br />
       <Typography align="center" color="text.primary" variant="h4">
-        Ispit
+        Exam
       </Typography>
       <br />
       <br />
