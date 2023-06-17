@@ -17,7 +17,7 @@ const IspitnaPitanja = ({ pitanja }) => {
 
   const [brojTrenutnogPitanja, setBrojTrenutnogPitanja] = useState(0);
   const [odabraniOdgovor, setOdabraniOdgovor] = useState("");
-  const [rezultat, setRezultat] = useState(0);
+  const [brojTacnihOdgovora, setBrojTacnihOdgovora] = useState(0);
   const [zavrsio, setZavrsio] = useState(false);
   const [odgovorio, setOdgovorio] = useState(false);
 
@@ -28,17 +28,17 @@ const IspitnaPitanja = ({ pitanja }) => {
 
   const provjeriTacanOdgovor = () => {
     if (odabraniOdgovor === pitanja[brojTrenutnogPitanja].tacanOdgovor) {
-      setRezultat(rezultat + 1);
+      setBrojTacnihOdgovora(brojTacnihOdgovora + 1);
     }
   };
 
-  const zavrsiIspit = () => {
+  const provjeriZavrsavaLiIspit = () => {
     if (brojTrenutnogPitanja === pitanja.length - 1) {
       setZavrsio(true);
     }
   };
 
-  const resetujIspit = () => {
+  const resetujOdgovor = () => {
     setOdgovorio(false);
   };
 
@@ -46,7 +46,7 @@ const IspitnaPitanja = ({ pitanja }) => {
     setBrojTrenutnogPitanja(0);
     setZavrsio(false);
     setOdabraniOdgovor("");
-    setRezultat(0);
+    setBrojTacnihOdgovora(0);
   };
 
   if (!pitanja.length)
@@ -76,7 +76,7 @@ const IspitnaPitanja = ({ pitanja }) => {
                   align="center"
                   color="text.primary"
                   variant="paragraph"
-                >{`Score ${rezultat}/${pitanja.length}`}</Typography>
+                >{`Score ${brojTacnihOdgovora}/${pitanja.length}`}</Typography>
                 <Box width={"100%"} mt={1}>
                   <Button
                     size="small"
@@ -174,7 +174,7 @@ const IspitnaPitanja = ({ pitanja }) => {
                                   brojTrenutnogPitanja + 1
                                 );
                                 provjeriTacanOdgovor();
-                                resetujIspit();
+                                resetujOdgovor();
                               }}
                             >
                               Next question
@@ -185,7 +185,7 @@ const IspitnaPitanja = ({ pitanja }) => {
                               size="small"
                               variant="outlined"
                               color="secondary"
-                              onClick={() => zavrsiIspit()}
+                              onClick={() => provjeriZavrsavaLiIspit()}
                             >
                               End
                             </Button>
