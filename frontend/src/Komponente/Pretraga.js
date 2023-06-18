@@ -95,7 +95,7 @@ function Pretraga() {
           <SearchIcon />
         </SearchIconWrapper>
         <StyledInputBase
-          placeholder="Pretraži…"
+          placeholder="Search…"
           onInput={(e) => {
             setInputVrijednost(e.target.value);
           }}
