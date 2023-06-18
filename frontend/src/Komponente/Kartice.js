@@ -11,7 +11,6 @@ import prva from '../Slike/prva.jpg';
 import druga from '../Slike/druga.jpg';
 import test from '../Slike/test.jpg';
 import { useNavigate } from 'react-router-dom';
-import backgroundImage from "../Slike/map_city.jpg";
 
 
 function MojaKartica({slika, tekst, url}) {
@@ -42,8 +41,7 @@ function MojaKartica({slika, tekst, url}) {
 
 function MojGrid() {
     return (
-      <div style={{backgroundImage: `url(${backgroundImage})`,backgroundSize: "cover",
-      minHeight: "90vh"}}>
+      <div>
         <Typography align = "center" color = "text.primary" variant="h4">
             Learning resources
         </Typography>

@@ -12,7 +12,7 @@ import ListItemText from '@mui/material/ListItemText';
 import LogovaniNavbar from "./LogovaniNavbar";
 import PretragaFajlova from './PretragaFajlova';
 import backgroundImage from "../Slike/map_city.jpg";
-
+import PretragaLink from './Proba';
 
 const ViewFajlove = ({ fileId }) => {
   const [fileUrl, setFileUrl] = useState('');
@@ -65,6 +65,10 @@ const ViewFajlove = ({ fileId }) => {
 const IzlistajFajlove = () => {
   const [posts, setPosts] = useState([]);
 
+  const odabrani= posts.map( e => e.fajl)
+  console.log(odabrani)
+
+
   useEffect(() => {
     const baseURL = 'http://127.0.0.1:8000/api/pdffajlovi/';
     const token = localStorage.getItem('token');
@@ -107,7 +111,7 @@ const IzlistajFajlove = () => {
     <Typography variant='h7'>Do you want to add your own files?</Typography> 
     <p/>
     <Button size = 'small' variant = 'contained' color = 'secondary' onClick={() => navigate('/uploadform')}>Click here</Button>
-    <PretragaFajlova/>
+    <PretragaFajlova></PretragaFajlova>
     </Box>
     </div>
   </>

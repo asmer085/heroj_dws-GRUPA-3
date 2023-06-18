@@ -27,30 +27,12 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   justifyContent: 'center',
 }));
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      width: '12ch',
-      '&:focus': {
-        width: '20ch',
-      },
-    },
-  },
-}));
-
-function Pretraga() {
+function Pretraga({value,onChange,theme}) {
     return (
         <Search>
             <SearchIconWrapper>
-              <SearchIcon />
             </SearchIconWrapper>
-            <StyledInputBase placeholder="Pretraži…" inputProps={{ 'aria-label': 'search' }}/>
+            <InputBase placeholder=" Search" inputProps={{ 'aria-label': 'search' }} value={value} onChange={onChange}/>
         </Search>
     )
 }
