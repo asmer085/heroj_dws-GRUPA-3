@@ -1,35 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import { PDFDocument, rgb } from 'pdf-lib';
+import React, { useState } from 'react';
 import { TextField, Button, List, ListItem, ListItemText } from '@mui/material';
-import { Document, Page, pdfjs } from 'react-pdf';
-import axios from 'axios';
+import pdf1 from './CPR-guide.pdf';
+import pdfjsLib from 'pdf-lib';
 
 function PretragaFajlova() {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-  const [data, setData] = useState([]);
+  var pdfjsLib = window['pdfjs-dist/build/pdf'];
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      const headers = { Authorization: `Token ${token}` };
-
-      const response = await axios.get('http://127.0.0.1:8000/api/pdffajlovi/', { headers });
-      setData(response.data);
-    } catch (error) {
-      console.error('Greška prilikom dohvata podataka:', error);
-    }
-  };
-
+  // The workerSrc property shall be specified.
+  pdfjsLib.GlobalWorkerOptions.workerSrc = '//cdn.jsdelivr.net/npm/pdfjs-dist@2.6.347/build/pdf.worker.js';
   const handleSearch = async () => {
+    const pdfPaths = [pdf1];
+
     try {
       const results = [];
-      for (const pdfPath of data) {
-        pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
-        const pdf = await pdfjs.getDocument(pdfPath.fajl).promise;
+      for (const pdfPath of pdfPaths) {
+        const loadingTask = pdfjsLib.getDocument(pdfPath);
+        const pdf = await loadingTask.promise;
 
         for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
           const page = await pdf.getPage(pageNum);
@@ -37,12 +26,9 @@ function PretragaFajlova() {
           const matches = content.items.filter(item => item.str.includes(searchTerm));
 
           if (matches.length > 0) {
-            matches.forEach(match => {
-              results.push({
-                pdfPath: pdfPath.fajl,
-                pageNum,
-                boundingRect: match.transform,
-              });
+            results.push({
+              pdfPath,
+              pageNum,
             });
           }
         }
@@ -57,27 +43,27 @@ function PretragaFajlova() {
   return (
     <div>
       <TextField
-        sx={{ marginTop: '10px' }}
+        sx={{ marginTop: '10px',backgroundColor:"red",borderRadius:"15px",borderColor:"red",width:"500px" }}
         value={searchTerm}
         onChange={event => setSearchTerm(event.target.value)}
       />
-      <Button variant="contained" onClick={handleSearch} sx={{ marginTop: '15px', marginLeft: '5px', backgroundColor: 'red' }}>
+      <Button variant="contained" onClick={handleSearch} sx={{backgroundColor:'red',borderRadius:"8px",marginTop:"15px",marginLeft:"5px" }}>
         Search
       </Button>
 
       <List>
         {searchResults.map((result, index) => (
           <ListItem key={index}>
-            <ListItemText
-              primary={`Found in the file: ${result.pdfPath}, na stranici ${result.pageNum}`}
-            />
-            <a
+            <ListItemText primary={`Pronađeno u datoteci: ${result.pdfPath}, na stranici ${result.pageNum}`} />
+            <Button
+              sx={{ backgroundColor: 'red',borderRadius:"8px",marginLeft:"5px" }}
+              variant="outlined"
               href={`${result.pdfPath}#page=${result.pageNum}`}
               target="_blank"
               rel="noopener noreferrer"
             >
               View
-            </a>
+            </Button>
           </ListItem>
         ))}
       </List>

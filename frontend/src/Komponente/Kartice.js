@@ -11,11 +11,13 @@ import prva from '../Slike/prva.jpg';
 import druga from '../Slike/druga.jpg';
 import test from '../Slike/test.jpg';
 import { useNavigate } from 'react-router-dom';
+import backgroundImage from "../Slike/map_city.jpg";
 
 
 function MojaKartica({slika, tekst, url}) {
   const navigate = useNavigate();
   return (
+    
     <Card sx = {{ borderRadius: '16px' }} style = {{backgroundColor: "black"}}>
 
       <CardMedia
@@ -40,15 +42,15 @@ function MojaKartica({slika, tekst, url}) {
 
 function MojGrid() {
     return (
-    <div> 
-
+      <div style={{backgroundImage: `url(${backgroundImage})`,backgroundSize: "cover",
+      minHeight: "90vh"}}>
         <Typography align = "center" color = "text.primary" variant="h4">
             Learning resources
         </Typography>
         <br/>
        
         <br/>
-        <Box align = "center" sx={{ width: '100%' }} >
+        <Box align = "center" sx={{ width: '100%'}} >
         <Grid container spacing = {5} direction="row" alignItems="center" justifyContent="center" >
 
           <Grid>

@@ -11,6 +11,8 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import LogovaniNavbar from "./LogovaniNavbar";
 import PretragaFajlova from './PretragaFajlova';
+import backgroundImage from "../Slike/map_city.jpg";
+
 
 const ViewFajlove = ({ fileId }) => {
   const [fileUrl, setFileUrl] = useState('');
@@ -86,6 +88,8 @@ const IzlistajFajlove = () => {
   return (
     <>
     <LogovaniNavbar/>
+     <div style={{backgroundImage: `url(${backgroundImage})`,backgroundSize: "cover",
+          minHeight: "100vh"}}>
     <List sx={{ width: '100%', maxWidth: 360}}>
       {posts && posts.map(post => {
         if (post.odobreno) {
@@ -105,6 +109,7 @@ const IzlistajFajlove = () => {
     <Button size = 'small' variant = 'contained' color = 'secondary' onClick={() => navigate('/uploadform')}>Click here</Button>
     <PretragaFajlova/>
     </Box>
+    </div>
   </>
 );
 }

@@ -22,7 +22,7 @@ const theme = (mode) =>
       },
       background: {
         default: grey[900]
-        
+
       },
       common: {
         black: grey[900],
