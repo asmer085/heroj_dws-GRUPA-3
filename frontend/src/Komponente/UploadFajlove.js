@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { TextField, Button, Typography, Input, Box, Snackbar, Paper } from "@mui/material";
 import axios from 'axios';
 import LogovaniNavbar from "./LogovaniNavbar";
+import backgroundImage from "../Slike/map_city.jpg";
 
 class UploadFajlove extends Component {
   state = {
@@ -70,7 +71,9 @@ class UploadFajlove extends Component {
     return (
       <>
         <LogovaniNavbar />
-        <p />
+        <div style={{backgroundImage: `url(${backgroundImage})`,backgroundSize: "cover",
+      minHeight: "90vh"}}>
+        <br/>
         <Box style={{ width: '400px', height: '10px' }} sx={{ m: "auto"}}>
           <form onSubmit={this.handleSubmit}>
             <Typography variant='h5'>Upload your own study material!</Typography>
@@ -103,6 +106,7 @@ class UploadFajlove extends Component {
           onClose={this.handleCloseSnackbar}
           message={this.state.successMessage}
         />
+        </div>
       </>
     );
   }
