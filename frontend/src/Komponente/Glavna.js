@@ -37,7 +37,7 @@ function Glavna() {
           </Typography>
           <br />
           <Box component="img" sx={{ height: 250 }} alt="Logo" src={logo} />
-          {localStorage.getItem("token") && <Pretraga />}
+          { <Pretraga />}
         </Box>
       </div>
     </>

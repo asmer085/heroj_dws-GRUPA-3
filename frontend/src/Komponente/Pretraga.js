@@ -75,7 +75,7 @@ function Pretraga() {
     axios
       .get(apiURL + "?vrsta__icontains=" + inputVrijednost, {
         headers: {
-          Authorization: `Token ${localStorage.getItem("token")}`,
+          Authorization: `Token ${"143c9655c1aab62f976c1490fb8c4ee1ed0762c6"}`,
         },
       })
       .then((response) => {

@@ -16,7 +16,7 @@ function PretragaDialog(props) {
     axios
       .get(apiURL + "?nesreca=" + odabranaNesreca.id, {
         headers: {
-          Authorization: `Token ${localStorage.getItem("token")}`,
+          Authorization: `Token ${"143c9655c1aab62f976c1490fb8c4ee1ed0762c6"}`,
         },
       })
       .then((response) => {
