@@ -11,11 +11,14 @@ import { useNavigate } from "react-router-dom";
 import ispit from "../Slike/ispit.jpg";
 import simulacija from "../Slike/simulacija.jpg";
 import LogovaniNavbar from "./LogovaniNavbar";
+import backgroundImage from "../Slike/map_city.jpg";
 
 function Kviz() {
   return (
     <div>
       <LogovaniNavbar />
+      <div style={{backgroundImage: `url(${backgroundImage})`,backgroundSize: "cover",
+      minHeight: "90vh"}}>
       <br />
       <Typography align="center" color="text.primary" variant="h4">
         Quiz
@@ -38,6 +41,7 @@ function Kviz() {
           <KarticaIspit slika={ispit} tekst="Exam" url="ispit/" />
         </Grid>
       </Box>
+      </div>
     </div>
   );
 }

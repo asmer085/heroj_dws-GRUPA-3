@@ -10,8 +10,9 @@ django-cors-headers = "*"
 dj-rest-auth = "==1.1.0"
 django-allauth = "~=0.42.0"
 django-admin-list-filters = "*"
+django-filter = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.9"
+python_version = "3.11"

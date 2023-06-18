@@ -4,6 +4,7 @@ import logo from '../Slike/logo.png';
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar2 from "./Navbar2";
+import backgroundImage from "../Slike/map_city.jpg";
 
 const Login = () => {
   const [values, setValues] = useState({
@@ -61,6 +62,8 @@ const Login = () => {
   return (
     <>
       <Navbar2 />
+      <div style={{backgroundImage: `url(${backgroundImage})`,backgroundSize: "cover",
+      minHeight: "90vh"}}>
       <Box style={{ width: '200px', height: '10px' }} sx={{ m: "auto" }}>
         <Box component="img"
           sx={{ height: 150 }}
@@ -113,6 +116,7 @@ const Login = () => {
           </Box>
         </FormGroup>
       </Box>
+      </div>
     </>
   );
 };
