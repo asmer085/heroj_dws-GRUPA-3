@@ -16,6 +16,7 @@ import { useNavigate } from 'react-router-dom';
 function MojaKartica({slika, tekst, url}) {
   const navigate = useNavigate();
   return (
+    
     <Card sx = {{ borderRadius: '16px' }} style = {{backgroundColor: "black"}}>
 
       <CardMedia
@@ -40,15 +41,14 @@ function MojaKartica({slika, tekst, url}) {
 
 function MojGrid() {
     return (
-    <div> 
-
+      <div>
         <Typography align = "center" color = "text.primary" variant="h4">
             Learning resources
         </Typography>
         <br/>
        
         <br/>
-        <Box align = "center" sx={{ width: '100%' }} >
+        <Box align = "center" sx={{ width: '100%'}} >
         <Grid container spacing = {5} direction="row" alignItems="center" justifyContent="center" >
 
           <Grid>

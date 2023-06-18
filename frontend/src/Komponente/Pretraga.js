@@ -34,6 +34,7 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
   justifyContent: "center",
 }));
 
+
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
   width: "100%",
@@ -122,6 +123,7 @@ function Pretraga() {
       />
     </>
   );
+
 }
 
 export default Pretraga;

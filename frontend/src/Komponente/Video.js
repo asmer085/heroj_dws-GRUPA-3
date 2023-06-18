@@ -8,6 +8,7 @@ import CardContent from '@mui/material/CardContent';
 import  { useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';
 import { Grid } from "@mui/material";
+import backgroundImage from "../Slike/map_city.jpg";
 
 const baseURL = "http://127.0.0.1:8000/api/v1/";
 
@@ -33,7 +34,9 @@ export default function Video() {
   return (
     <>
       <LogovaniNavbar/>
-      <Box align="center" sx={{ width: '95%', m:"auto", marginTop:'15px'}}>
+      <div style={{backgroundImage: `url(${backgroundImage})`,backgroundSize: "cover",
+          minHeight: "100vh"}}>
+      <Box align="center" sx={{ width: '95%', m:"auto", marginTop:'35px'}}>
         <Grid container spacing={5} direction="row" alignItems="center" justifyContent="center">
           {post &&
             post.map((post) => (
@@ -48,6 +51,7 @@ export default function Video() {
             ))}
         </Grid>
       </Box>
+      </div>
     </>
   ); 
 }
