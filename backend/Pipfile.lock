@@ -1,11 +1,11 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "aa312d575d8bd9f53bc8a12ee93cf8b1753e0a8eeada22249b91b5a92b9d4886"
+            "sha256": "f4d7f67c2c0879f3189515f3895131b91511048a38e897fa2e17c09e1031b4ec"
         },
         "pipfile-spec": 6,
         "requires": {
-            "python_version": "3.9"
+            "python_version": "3.11"
         },
         "sources": [
             {
@@ -159,6 +159,14 @@
             "index": "pypi",
             "version": "==3.11.0"
         },
+        "django-filter": {
+            "hashes": [
+                "sha256:632a251fa8f1aadb4b8cceff932bb52fe2f826dd7dfe7f3eac40e5c463d6836e",
+                "sha256:f4a6737a30104c98d2e2a5fb93043f36dd7978e0c7ddc92f5998e85433ea5063"
+            ],
+            "index": "pypi",
+            "version": "==21.1"
+        },
         "djangorestframework": {
             "hashes": [
                 "sha256:5cc724dc4b076463497837269107e1995b1fbc917468d1b92d188fd1af9ea789",
@@ -221,21 +229,13 @@
             "markers": "python_version >= '3.5'",
             "version": "==0.4.4"
         },
-        "typing-extensions": {
-            "hashes": [
-                "sha256:88a4153d8505aabbb4e13aacb7c486c2b4a33ca3b3f807914a9b4c844c471c26",
-                "sha256:d91d5919357fe7f681a9f2b5b4cb2a5f1ef0a1e9f59c4d8ff0d3491e05c0ffd5"
-            ],
-            "markers": "python_version < '3.11'",
-            "version": "==4.6.3"
-        },
         "urllib3": {
             "hashes": [
-                "sha256:61717a1095d7e155cdb737ac7bb2f4324a858a1e2e6466f6d03ff630ca68d3cc",
-                "sha256:d055c2f9d38dc53c808f6fdc8eab7360b6fdbbde02340ed25cfbcd817c62469e"
+                "sha256:48e7fafa40319d358848e1bc6809b208340fafe2096f1725d05d67443d0483d1",
+                "sha256:bee28b5e56addb8226c96f7f13ac28cb4c301dd5ea8a6ca179c0b9835e032825"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==2.0.2"
+            "version": "==2.0.3"
         }
     },
     "develop": {}
